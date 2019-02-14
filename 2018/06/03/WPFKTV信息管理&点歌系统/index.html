@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="KTV信息管理&amp;点歌系统(WPF)">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">KTV信息管理&amp;点歌系统(WPF)</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-03</span>
+            <span class="time">22:30:34</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/WPF/">#WPF</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>​​<img src="/2018/06/03/WPFKTV信息管理&点歌系统/20180603120728141.png" alt="系统概览"></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>C/S架构的KTV信息管理系统</li>
+<li>包含模块 <ol>
+<li>经营管理</li>
+<li>包间信息管理</li>
+<li>歌曲信息管理</li>
+<li>歌手信息管理</li>
+<li>数据统计图表</li>
+<li>点歌系统(独立的客户端)</li>
+</ol>
+</li>
+<li>前端用WPF，服务端用WCF，都是微软推出的C#框架</li>
+</ul>
+<h1 id="涉及知识"><a href="#涉及知识" class="headerlink" title="涉及知识"></a>涉及知识</h1><ul>
+<li>WCF的简单应用(未涉及双工通信)</li>
+<li>MVVM的编程思想(自我感觉实现的很彻底)</li>
+<li>WPF中绑定，资源，命令(等实现MVVM的手段)的实现</li>
+<li>Metro，Rabbion，LiveCharts前端框架的使用</li>
+<li>WPF内置音乐播放器控件，基本功能还可以，都有</li>
+<li>WPF内置的语音识别，实现切歌，伴奏切换等，可以自行扩展</li>
+<li>本地XML文件存储配置信息 如：记录了热度排行时的一些参数</li>
+</ul>
+<h1 id="本地运行-仅描述window系统"><a href="#本地运行-仅描述window系统" class="headerlink" title="本地运行(仅描述window系统)"></a>本地运行(仅描述window系统)</h1><p>我想具体看一下这个项目，在本地电脑上运行一下，咋办？</p>
+<ul>
+<li>首先，开发工具VS与SQLServer，VS我用的2017，不过应该2010以上都成。SQLServer我用的2014的，数据库好像太老不行，2005跑不了，数据库文件需要降级，不妨就装个新版本的吧，功能还多一些。</li>
+<li>在github上下载程序包(包括数据库及数据，还有创建表的SQL，SQL里还有字段备注)，如果有帮助，希望能点下Star<br><a href="https://github.com/superdino123/KTV" target="_blank" rel="noopener">https://github.com/superdino123/KTV</a></li>
+<li>打开SQLServer附加数据库文件（在KTV/SQL/SQLServerFile文件里，数据库表结构可以查看SQL/CreateTable.Sql文件）</li>
+<li>数据库加完后，直接打开服务端和客户端程序<br>只需要修改数据库连接字符串里的账号密码， 在服务端程序里的ConnectionHelper.cs里</li>
+<li>先打开服务端程序，清理解决方案，点击运行，运行成功后；<br>更新现有客户端程序的所有服务引用，信息管理系统有四个，点歌系统有两个，然后运行客户端程序，客户端程序选择KTVStudio(为啥要更新服务引用，因为我看到客户端配置文件里自动生成的代码里有我计算机的名称和用户名称，这个需要你更新服务引用让它换成你自己的)<br>就可以正常使用KTV信息管理系统了</li>
+<li>如果通过客户端打开KTVMusic程序的话也是可以看到界面的，但是歌曲是从本地读取的，如果想听歌，需要在本地放两首MV视频<ul>
+<li>KTVMusic的App.config文件中appSettings中配置了本地MV文件存储的路径，原本是G:/Songs，自己把MV文件存到哪里，就改成哪里</li>
+<li>MV文件我用七牛云公共空间存储的，免费的，在这里推荐下，以下是部分下载链接，我就选了几首，所以点歌的时候请只点击你已经下载的歌，下载后文件名称不要改，数据库里存储的就是这个名称，数据库里存储了歌曲的下载链接，想下载更多可以去数据库里找(时间久了，七牛云的存储被清空了，自己申请，存储歌曲吧)</li>
+<li>MV文件放好后，就可以正常使用KTVMusic了</li>
+</ul>
+</li>
+</ul>
+<h1 id="注"><a href="#注" class="headerlink" title="注"></a>注</h1><ul>
+<li>以下内容如果有问题，可以通过<a href="mailto:1119674493@qq.com" target="_blank" rel="noopener">1119674493@qq.com</a>邮箱联系我(根据以往经验，有些提出来的问题我也解答不了…)</li>
+<li>如果有帮助的话，麻烦点个Star，谢谢！</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
