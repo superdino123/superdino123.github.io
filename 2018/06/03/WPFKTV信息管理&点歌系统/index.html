@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-06-03</span>
-            <span class="time">10:13:22</span>
+            <span class="time">10:18:11</span>
           </span>
           
           <!--  Categories  -->
@@ -124,21 +124,12 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>​​<img src="/2018/06/03/WPFKTV信息管理&点歌系统/20180603120728141.png" alt="系统概览"></p>
-<a id="more"></a>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+          <ul>
 <li>C/S架构的KTV信息管理系统</li>
-<li>包含模块 <ol>
-<li>经营管理</li>
-<li>包间信息管理</li>
-<li>歌曲信息管理</li>
-<li>歌手信息管理</li>
-<li>数据统计图表</li>
-<li>点歌系统(独立的客户端)</li>
-</ol>
-</li>
-<li>前端用WPF，服务端用WCF，都是微软推出的C#框架</li>
+<li>客户端用WPF，服务端用WCF(微软的C#框架)</li>
 </ul>
+<a id="more"></a>
+<p>​​<img src="/2018/06/03/WPFKTV信息管理&点歌系统/20180603120728141.png" alt="系统概览"></p>
 <h1 id="涉及知识"><a href="#涉及知识" class="headerlink" title="涉及知识"></a>涉及知识</h1><ul>
 <li>WCF的简单应用(未涉及双工通信)</li>
 <li>MVVM的编程思想(自我感觉实现的很彻底)</li>
@@ -148,7 +139,13 @@
 <li>WPF内置的语音识别，实现切歌，伴奏切换等，可以自行扩展</li>
 <li>本地XML文件存储配置信息 如：记录了热度排行时的一些参数</li>
 </ul>
-<h1 id="本地运行-仅描述window系统"><a href="#本地运行-仅描述window系统" class="headerlink" title="本地运行(仅描述window系统)"></a>本地运行(仅描述window系统)</h1><p>我想具体看一下这个项目，在本地电脑上运行一下，咋办？</p>
+<h1 id="包含模块"><a href="#包含模块" class="headerlink" title="包含模块"></a>包含模块</h1><pre><code>1. 经营管理
+2. 包间信息管理
+3. 歌曲信息管理
+4. 歌手信息管理
+5. 数据统计图表
+6. 点歌系统(独立的客户端)
+</code></pre><h1 id="本地运行-仅描述window系统"><a href="#本地运行-仅描述window系统" class="headerlink" title="本地运行(仅描述window系统)"></a>本地运行(仅描述window系统)</h1><p>我想具体看一下这个项目，在本地电脑上运行一下，咋办？</p>
 <ul>
 <li>首先，开发工具VS与SQLServer，VS我用的2017，不过应该2010以上都成。SQLServer我用的2014的，数据库好像太老不行，2005跑不了，数据库文件需要降级，不妨就装个新版本的吧，功能还多一些。</li>
 <li>在github上下载程序包(包括数据库及数据，还有创建表的SQL，SQL里还有字段备注)，如果有帮助，希望能点下Star<br><a href="https://github.com/superdino123/KTV" target="_blank" rel="noopener">https://github.com/superdino123/KTV</a></li>
@@ -173,7 +170,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#涉及知识"><span class="toc-text">涉及知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本地运行-仅描述window系统"><span class="toc-text">本地运行(仅描述window系统)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注"><span class="toc-text">注</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#涉及知识"><span class="toc-text">涉及知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#包含模块"><span class="toc-text">包含模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本地运行-仅描述window系统"><span class="toc-text">本地运行(仅描述window系统)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注"><span class="toc-text">注</span></a></li></ol>
 	</div>
 </aside>
       </div>
