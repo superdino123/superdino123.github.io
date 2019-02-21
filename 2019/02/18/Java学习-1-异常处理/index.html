@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Java学习-1-异常处理">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Java学习-1-异常处理</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-02-18</span>
+            <span class="time">22:41:10</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java-异常处理/">#Java 异常处理</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>所有模型都是错误的，但有些是有用的 —————— 格言</p>
+</blockquote>
+<blockquote>
+<p>所有的决定都是有错误的，但有些是有意义的 —————— 赠自己</p>
+</blockquote>
+<h1 id="为什么要有异常处理"><a href="#为什么要有异常处理" class="headerlink" title="为什么要有异常处理"></a>为什么要有异常处理</h1><ol>
+<li>发现java程序错误的时机有两个：编译时期，运行时期<ul>
+<li>编译报错导致程序不能运行</li>
+<li>运行时期出现问题易导致程序崩溃</li>
+</ul>
+</li>
+<li>需要将错误报出来并处理，提高程序的健壮性</li>
+<li>用异常来提供一致的错误报告模型，提供将错误以其他程序可以理解的形式报出来的功能</li>
+<li>异常处理会通过编译器强制执行</li>
+<li>将“描述在执行过程中做什么事”和“出了问题怎么办”的代码相分离</li>
+</ol>
+<h1 id="抛出异常会怎样"><a href="#抛出异常会怎样" class="headerlink" title="抛出异常会怎样"></a>抛出异常会怎样</h1><ol>
+<li>异常情况：阻止当前方法或作用域继续执行的问题</li>
+<li>抛出异常过程<ul>
+<li>通过throw将异常抛出</li>
+<li>同java其他对象创建一样，将使用new在堆上创建异常对象</li>
+<li>当前的执行路径被终止</li>
+<li>从当前环境中弹出对异常处理的引用</li>
+<li>异常处理机制接管程序，寻找异常处理程序(任务是将程序从错误状态中恢复)</li>
+<li>异常处理程序使程序要么换一种方式运行，要么继续运行下去</li>
+</ul>
+</li>
+<li>通常异常对象中仅有的信息就是异常类型，除此之外不包含任何有意义的内容</li>
+</ol>
+<h1 id="如何捕获异常"><a href="#如何捕获异常" class="headerlink" title="如何捕获异常"></a>如何捕获异常</h1><ol>
+<li>目的：将方法中完成任务的代码与错误检查的代码分离</li>
+<li><p>捕获异常</p>
+<pre><code>try{
+
+}
+catch(TypeX x){ // 接受且仅接受一个特殊类型的参数
+
+}
+</code></pre></li>
+</ol>
+<ul>
+<li>try块作为监控区域，从try块中抛出的异常会进入catch(异常处理程序)</li>
+<li>异常处理程序必须紧跟在try块之后</li>
+<li>异常被抛出后，异常处理机制将搜寻参数与异常类型相匹配的第一个处理程序</li>
+</ul>
+<blockquote>
+<p>异常处理程序不紧跟着try块(监控区域)，可能导致由其他异常处理程序执行该try块中抛出的异常</p>
+</blockquote>
+<h1 id="如何处理捕获的异常"><a href="#如何处理捕获的异常" class="headerlink" title="如何处理捕获的异常"></a>如何处理捕获的异常</h1><ol>
+<li>恢复模型 (通过异常处理程序恢复程序运行) PK 终止模型 (终止程序)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>优势</th>
+<th>劣势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恢复模型</td>
+<td>在遇到错误时与可以正常运行</td>
+<td>依赖错误抛出位置导致异常处理程序不通用</td>
+<td></td>
+</tr>
+<tr>
+<td>终止模型</td>
+<td>代码更容易维护</td>
+<td>只实现了更容易抛出错误，也没有提高代码的健壮性，出了错误程序依然会停止运行或显示错误信息</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>官方推荐：终止模型，简单的才是最好的，将更多的精力放在功能实现上</p>
+</blockquote>
+<h1 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h1><ol>
+<li>对异常来说，最重要的是类名，添加参数构造器不实用<ul>
+<li>自定义异常: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/FullConstructors.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/FullConstructors.java</a></li>
+<li>自定义异常(含参): <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/FullConstructors.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/FullConstructors.java</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="如何将异常记录到日志中"><a href="#如何将异常记录到日志中" class="headerlink" title="如何将异常记录到日志中"></a>如何将异常记录到日志中</h1><ol>
+<li>通过 java.util.logging 工具<ul>
+<li>记录日志: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/LoggingExceptions.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/LoggingExceptions.java</a></li>
+<li>捕获和记录其他人编写的异常：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/LoggingExceptions2.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/LoggingExceptions2.java</a></li>
+<li>记录自定义异常日志：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/ExtraFeatures.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/ExtraFeatures.java</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="为什么要加异常声明"><a href="#为什么要加异常声明" class="headerlink" title="为什么要加异常声明"></a>为什么要加异常声明</h1><ul>
+<li>将方法可能抛出的异常告知使用此方法的程序员</li>
+<li><p>该语法强制使用</p>
+<pre><code>void f() throws xx, ss, aa{
+
+}
+</code></pre></li>
+<li>被检查的异常：在编译时被强制检查的异常</li>
+</ul>
+<h1 id="如何抛出全部异常"><a href="#如何抛出全部异常" class="headerlink" title="如何抛出全部异常"></a>如何抛出全部异常</h1><pre><code>catch(Exception e){
+    System.out.println(&quot;Caught an exception&quot;);
+}
+</code></pre><ul>
+<li>抛出全部异常：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/ExceptionMethods.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/ExceptionMethods.java</a></li>
+</ul>
+<h1 id="如何查看栈轨迹"><a href="#如何查看栈轨迹" class="headerlink" title="如何查看栈轨迹"></a>如何查看栈轨迹</h1><ul>
+<li>printStackTrace()方法<ul>
+<li>返回一个由栈轨迹中的元素所构成的数组</li>
+<li>其中每一个元素都表示栈中的一帧</li>
+<li>元素0为栈顶元素，调用序列中最后一个方法调用</li>
+<li>栈底是调用序列中的第一个方法调用</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/WhoCalled.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/WhoCalled.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="如何重新抛出异常"><a href="#如何重新抛出异常" class="headerlink" title="如何重新抛出异常"></a>如何重新抛出异常</h1><pre><code>catch(Exception e) {
+    System.out.println(&quot;An exception was thrown&quot;);
+    throw e;
+}
+</code></pre><ul>
+<li>重新抛出异常会把异常抛给上一级环境中的异常处理程序，同一个try块的后续catch子句将被忽略</li>
+</ul>
+<h1 id="异常链是什么"><a href="#异常链是什么" class="headerlink" title="异常链是什么"></a>异常链是什么</h1><ul>
+<li><p>异常链：捕获一个异常后抛出另一个异常，并且希望把原始异常的信息保存下来</p>
+</li>
+<li><p>TODO example<br>  <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/DynamicFieldsException.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/DynamicFieldsException.java</a></p>
+</li>
+</ul>
+<h1 id="Java异常的分类"><a href="#Java异常的分类" class="headerlink" title="Java异常的分类"></a>Java异常的分类</h1><ul>
+<li>Throwable类：用来表示任何可以作为异常被抛出的类</li>
+<li>Error(编译时和系统错误)和Exception(被抛出的基本类型)继承自Throwable类</li>
+<li>RuntimeException与继承自RuntimeException的异常被称为”不受检查的异常”，不需要写throws也会抛出来</li>
+</ul>
+<h1 id="具有内存回收机制的java中finally有什么用"><a href="#具有内存回收机制的java中finally有什么用" class="headerlink" title="具有内存回收机制的java中finally有什么用"></a>具有内存回收机制的java中finally有什么用</h1><ul>
+<li>将除内存之外的资源恢复到他们的初始状态</li>
+<li>finally配合break || continue使用，可替代goto语句</li>
+</ul>
+<h1 id="异常丢失的情况"><a href="#异常丢失的情况" class="headerlink" title="异常丢失的情况"></a>异常丢失的情况</h1><ol>
+<li>finally中return 阻断异常抛出</li>
+<li>finally中抛出异常，原程序停止，其他程序中先触发到的异常无法抛出</li>
+</ol>
+<ul>
+<li>as: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/LostMessage.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/LostMessage.java</a></li>
+<li>为什么会出现异常丢失？<ul>
+<li>java允许“前一个异常还没处理就抛出下一个异常”</li>
+</ul>
+</li>
+</ul>
+<h1 id="异常在面向对象中的限制有哪些"><a href="#异常在面向对象中的限制有哪些" class="headerlink" title="异常在面向对象中的限制有哪些"></a>异常在面向对象中的限制有哪些</h1><ol>
+<li>派生类的方法所抛出的异常要和基类方法相同</li>
+</ol>
+<h1 id="涉及到构造器时的异常"><a href="#涉及到构造器时的异常" class="headerlink" title="涉及到构造器时的异常"></a>涉及到构造器时的异常</h1><ol>
+<li>设计资源释放时调用函数释放资源 <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/InputFile.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/InputFile.java</a></li>
+<li>在创建需要清理的对象之后，立即进入一个try-finally语句块 <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/CleanupIdiom.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/exceptions/CleanupIdiom.java</a></li>
+</ol>
+<h1 id="异常处理程序匹配异常的规则是什么"><a href="#异常处理程序匹配异常的规则是什么" class="headerlink" title="异常处理程序匹配异常的规则是什么"></a>异常处理程序匹配异常的规则是什么</h1><ol>
+<li>异常匹配规则：<ul>
+<li>抛出异常时，异常处理系统会按照代码的书写顺序找出”最近”的处理程序</li>
+<li>派生类的对象也可以匹配其基类的处理程序</li>
+</ul>
+</li>
+</ol>
+<h1 id="如何将”被检查的异常“转换为”不被检查的异常“"><a href="#如何将”被检查的异常“转换为”不被检查的异常“" class="headerlink" title="如何将”被检查的异常“转换为”不被检查的异常“"></a>如何将”被检查的异常“转换为”不被检查的异常“</h1><ul>
+<li><p>假设异常A可能会抛出来，我不知道如何处理他，但又不得不处理他，该怎么处理?</p>
+<ul>
+<li><p>将异常A通过异常链转换为不被检查的异常(RuntimeException)抛出</p>
+<p>  try{</p>
+<p>  }catch(IDontKnowWhatToDoWithThisCheckedException e){</p>
+<pre><code>throw new RuntimeException(e);
+</code></pre><p>  }</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="异常的意义"><a href="#异常的意义" class="headerlink" title="异常的意义"></a>异常的意义</h1><ul>
+<li>简化对错误的处理</li>
+<li>主要用于报告错误，而不是恢复程序的错误</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要有异常处理"><span class="toc-text">为什么要有异常处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#抛出异常会怎样"><span class="toc-text">抛出异常会怎样</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何捕获异常"><span class="toc-text">如何捕获异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何处理捕获的异常"><span class="toc-text">如何处理捕获的异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义异常"><span class="toc-text">自定义异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何将异常记录到日志中"><span class="toc-text">如何将异常记录到日志中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要加异常声明"><span class="toc-text">为什么要加异常声明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何抛出全部异常"><span class="toc-text">如何抛出全部异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何查看栈轨迹"><span class="toc-text">如何查看栈轨迹</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何重新抛出异常"><span class="toc-text">如何重新抛出异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常链是什么"><span class="toc-text">异常链是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java异常的分类"><span class="toc-text">Java异常的分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#具有内存回收机制的java中finally有什么用"><span class="toc-text">具有内存回收机制的java中finally有什么用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常丢失的情况"><span class="toc-text">异常丢失的情况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常在面向对象中的限制有哪些"><span class="toc-text">异常在面向对象中的限制有哪些</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#涉及到构造器时的异常"><span class="toc-text">涉及到构造器时的异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常处理程序匹配异常的规则是什么"><span class="toc-text">异常处理程序匹配异常的规则是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何将”被检查的异常“转换为”不被检查的异常“"><span class="toc-text">如何将”被检查的异常“转换为”不被检查的异常“</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常的意义"><span class="toc-text">异常的意义</span></a></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
