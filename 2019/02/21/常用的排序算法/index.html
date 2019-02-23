@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="常用的排序算法">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">常用的排序算法</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-02-21</span>
+            <span class="time">12:46:06</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java-排序/">#Java 排序</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="前面"><a href="#前面" class="headerlink" title="前面"></a>前面</h1><ul>
+<li>性能：衡量一切的一般标准</li>
+<li>代码：<a href="https://github.com/superdino123/ThinkInJavaTest/tree/master/src/sortmethods" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/tree/master/src/sortmethods</a></li>
+</ul>
+<h1 id="插入排序-——-Insertion-Sort-int-n"><a href="#插入排序-——-Insertion-Sort-int-n" class="headerlink" title="插入排序 —— Insertion Sort(int[] n)"></a>插入排序 —— Insertion Sort(int[] n)</h1><ul>
+<li>平均时间复杂度：O(n^2)<ul>
+<li>1 + 2 + 3 + 4 + 5 + … + n = (n+1)n/2 约等于 n^2</li>
+</ul>
+</li>
+<li>空间复杂度：O(1)</li>
+<li><p>code</p>
+<pre><code>public int[] insertionSort(int[] n) {
+    for(int i = 1; i &lt; n.length; i++) {
+        for(int j = i; j &gt;= 1; j --) {
+            if(n[j] &lt; n[j - 1]) {
+                int t = n[j];
+                n[j] = n[j - 1];
+                n[j - 1] = t;
+            }
+
+        }
+    }
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>每次遍历，会有数A依次与前一个数比较并移动，最终数A留在排序正确的位置</li>
+</ul>
+</li>
+</ul>
+<h1 id="冒泡排序-——-BubbleSort-int-n"><a href="#冒泡排序-——-BubbleSort-int-n" class="headerlink" title="冒泡排序 —— BubbleSort(int[] n)"></a>冒泡排序 —— BubbleSort(int[] n)</h1><ul>
+<li>时间复杂度：O(n^2)</li>
+<li>空间复杂度：O(1)</li>
+<li><p>code</p>
+<pre><code>public int[] bubbleSort(int[] n) {
+    for(int i = 0; i &lt; n.length; i++) {
+        for(int j = 0; j &lt; (n.length - 1 - i); j++) {
+            if(n[j] &gt; n[j + 1]) {
+                int t = n[j];
+                n[j] = n[j + 1];
+                n[j + 1] = t;
+            }
+        }
+    }
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>每次遍历，前后两个数两两比较并移动，最终末尾一位未排序数确定</li>
+</ul>
+</li>
+</ul>
+<h1 id="选择排序-——-Selection-Sort-int-n"><a href="#选择排序-——-Selection-Sort-int-n" class="headerlink" title="选择排序 —— Selection Sort(int[] n)"></a>选择排序 —— Selection Sort(int[] n)</h1><ul>
+<li>时间复杂度：O(n^2)</li>
+<li>空间复杂度：O(1)</li>
+<li><p>code</p>
+<pre><code>public int[] selectionSort(int[] n) {
+    for(int i = 0; i &lt; n.length - 1; i ++) {
+        int min = i;
+        for(int j = i+1; j &lt; n.length; j ++) {
+            if(n[j] &lt; n[min])
+                min = j;
+        }
+        int t = n[min];
+        n[min] = n[i];
+        n[i] = t;
+    }
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>每次遍历，两两比较获取到序号，与前面或后面的位置进行调换</li>
+</ul>
+</li>
+</ul>
+<h1 id="快速排序-——-QuickSort"><a href="#快速排序-——-QuickSort" class="headerlink" title="快速排序 —— QuickSort"></a>快速排序 —— QuickSort</h1><ul>
+<li>平均时间复杂度：O(nlog2n)</li>
+<li>空间复杂度：O(log2n)</li>
+<li><p>code</p>
+<pre><code>public int[] quickSort(int[] n, int first, int last) {
+    if(first &gt;= last)
+        return n;
+    int tempfirst = first;
+    int templast = last;
+    int key = n[first];
+    while(first &lt; last) {
+        while(n[last] &gt;= key &amp;&amp; last &gt; first) {
+            last--;
+        }
+        n[first] = n[last];
+        while(n[first] &lt;= key &amp;&amp; last &gt; first) {
+            first++;
+        }
+        n[last] = n[first];
+    }
+    n[first] = key;
+
+    int[] left = quickSort(n, tempfirst, first - 1);
+    int[] right = quickSort(n, first+1, templast);
+    for(int i = tempfirst; i &lt; first; i++) {
+        n[i] = left[i];
+    }
+    for(int i = first + 1; i &lt;= templast; i++) {
+        n[i] = right[i];
+    }
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>每次遍历，获取将数组分为两个子数组，左数组内数字&lt;= 中间数字 &lt;= 右数组内数组</li>
+</ul>
+</li>
+</ul>
+<h1 id="归并排序-——-Merge-Sort"><a href="#归并排序-——-Merge-Sort" class="headerlink" title="归并排序 —— Merge Sort"></a>归并排序 —— Merge Sort</h1><ul>
+<li>时间复杂度：O(nlog2n)</li>
+<li>空间复杂度：O(n)</li>
+<li><p>code</p>
+<pre><code>public int[] mergeSort(int[] n, int first, int last) {
+    if(first &lt; last) {
+        int middle = (first + last) / 2;
+        n = mergeSort(n, first, middle);
+        n = mergeSort(n, middle + 1, last);
+        n = mergeMehtod(n, first, middle, last);
+    }
+    return n;
+}
+
+public int[] mergeMehtod(int[] n, int first, int middle, int last) {
+    int[] t = new int[last - first + 1];
+    int tempfirst = first;
+    int tempmiddle = middle + 1;
+    int k = 0;
+    while(tempmiddle &lt;= last &amp;&amp; tempfirst &lt;= middle) {
+        if(n[tempfirst] &gt; n[tempmiddle])
+            t[k++] = n[tempmiddle++];
+        else {
+            t[k++] = n[tempfirst++];
+        }
+    }
+    while(tempmiddle &lt; last + 1)
+        t[k++] = n[tempmiddle++];
+    while(tempfirst &lt; middle + 1)
+        t[k++] = n[tempfirst++];
+    for(k = 0, tempfirst = first; tempfirst &lt; last + 1; k++, tempfirst++)
+        n[tempfirst] = t[k];
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>二分法，实现将两个有序数组归并为一个有序数组</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前面"><span class="toc-text">前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插入排序-——-Insertion-Sort-int-n"><span class="toc-text">插入排序 —— Insertion Sort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#冒泡排序-——-BubbleSort-int-n"><span class="toc-text">冒泡排序 —— BubbleSort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选择排序-——-Selection-Sort-int-n"><span class="toc-text">选择排序 —— Selection Sort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#快速排序-——-QuickSort"><span class="toc-text">快速排序 —— QuickSort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#归并排序-——-Merge-Sort"><span class="toc-text">归并排序 —— Merge Sort</span></a></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+

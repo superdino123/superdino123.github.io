@@ -101,8 +101,8 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-02-18</span>
-            <span class="time">22:41:10</span>
+            <span class="date">2018-09-02</span>
+            <span class="time">12:46:06</span>
           </span>
           
         </div>
@@ -287,17 +287,18 @@ catch(TypeX x){ // 接受且仅接受一个特殊类型的参数
 <li><p>假设异常A可能会抛出来，我不知道如何处理他，但又不得不处理他，该怎么处理?</p>
 <ul>
 <li><p>将异常A通过异常链转换为不被检查的异常(RuntimeException)抛出</p>
-<p>  try{</p>
-<p>  }catch(IDontKnowWhatToDoWithThisCheckedException e){</p>
-<pre><code>throw new RuntimeException(e);
-</code></pre><p>  }</p>
-</li>
+<pre><code>try{
+
+}catch(IDontKnowWhatToDoWithThisCheckedException e){
+    throw new RuntimeException(e);
+}
+</code></pre></li>
 </ul>
 </li>
 </ul>
 <h1 id="异常的意义"><a href="#异常的意义" class="headerlink" title="异常的意义"></a>异常的意义</h1><ul>
 <li>简化对错误的处理</li>
-<li>主要用于报告错误，而不是恢复程序的错误</li>
+<li>主要用于统一的报告错误，而不是恢复程序的错误</li>
 </ul>
 
         </div>
