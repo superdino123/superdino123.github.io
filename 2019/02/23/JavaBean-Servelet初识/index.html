@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="JavaBean&amp;Servelet初识">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">JavaBean&amp;Servelet初识</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-02-23</span>
+            <span class="time">17:49:55</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Java基础/">Java基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java/">#Java</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <ul>
+<li>JavaBean&amp;Servelet初识</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/tree/master/src/javabeanandservelet" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/tree/master/src/javabeanandservelet</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="什么是JavaBean"><a href="#什么是JavaBean" class="headerlink" title="什么是JavaBean"></a>什么是JavaBean</h1><ul>
+<li>JavaBean是软件组件，具有属性，事件，方法</li>
+<li>JavaBean的核心是内省，内省是分析Bean的过程，用于确定Bean的功能</li>
+</ul>
+<h2 id="什么是内省"><a href="#什么是内省" class="headerlink" title="什么是内省"></a>什么是内省</h2><ul>
+<li>内省机制是可以发现并提供Bean的所有属性，事件，公有方法的机制，不能显示受保护方法和私有方法</li>
+</ul>
+<h2 id="如何添加属性"><a href="#如何添加属性" class="headerlink" title="如何添加属性"></a>如何添加属性</h2><pre><code>private double height;
+
+public double getHeight(){
+    return height;
+}
+public void setHeight(double h){
+    height = h;
+}
+</code></pre><h2 id="如何添加事件"><a href="#如何添加事件" class="headerlink" title="如何添加事件"></a>如何添加事件</h2><pre><code>//假如有一个TemperatureListener事件接口类型，监视温度的Bean可能提供以下方法
+public void addTemperatureListener(TemperatureListener t1){}
+public void removeTemperatureListener(TemperatureListner t1)[]
+</code></pre><h2 id="理解“JavaBean的配置设置可以保存在永久存储介质中，并且可以在以后恢复”"><a href="#理解“JavaBean的配置设置可以保存在永久存储介质中，并且可以在以后恢复”" class="headerlink" title="理解“JavaBean的配置设置可以保存在永久存储介质中，并且可以在以后恢复”"></a>理解“JavaBean的配置设置可以保存在永久存储介质中，并且可以在以后恢复”</h2><ul>
+<li>意味JavaBean具有持久性，保存Bean当前状态到非易失性存储器的能力</li>
+<li>Java类库提供的对象串行化能力，可以用于为Bean提供持久性</li>
+<li>只要实现java.io.Serializable接口使得串行化可以自动完成，Bean不需要采取其他操作</li>
+<li>如果Bean没有实现java.io.Serializable接口，则必须自己提供串行化。否则，容器不能保存组件的配置信息</li>
+</ul>
+<h1 id="通过CGI了解servlet"><a href="#通过CGI了解servlet" class="headerlink" title="通过CGI了解servlet"></a>通过CGI了解servlet</h1><ul>
+<li>CGI: 浏览器通过CGI(公共网关接口)与Web服务器通信，允许单独的进程从HTTP请求读取数据，并将数据写入HTTP响应<br>​<img src="/2019/02/23/JavaBean-Servelet初识/CGI.png" alt="CGI"></li>
+<li>Servlet: 不需要为每个客户端请求创建单独进程的CGI，因为是Java写的，所以还具备平台独立性质</li>
+<li>为什么Servlet不需要为每个客户端请求创建单独进程？servlet在Web服务器的地址空间内执行</li>
+</ul>
+<h2 id="从http请求-到-servlet-servlet的生命周期"><a href="#从http请求-到-servlet-servlet的生命周期" class="headerlink" title="从http请求 到 servlet(servlet的生命周期)"></a>从http请求 到 servlet(servlet的生命周期)</h2><ul>
+<li>web浏览器输入url，生成http请求，发送到适当的服务器</li>
+<li>http请求被Web服务器接受，服务器将这个请求映射到特定的servlet</li>
+<li>服务器调用servlet的init()方法，只有当servlet第一次被加载到内存中，才调用该方法。可以向servlet传递初始化参数，以便servlet配置自身</li>
+<li>服务器调用servlet的service()方法，处理http请求，servlet能够读取在http请求中提供的数据，为客户端定制HTTP请求<ul>
+<li>处理http请求后，servlet会保留在服务器的地址空间中，并且可以用于处理从客户端接收到的其他HTTP请求，为每个http请求调用service()方法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>写到这里，有此一问：用JavaBean写的程序就是servlet吗？还是servlet是一个Java已有的组件？ </p>
+</blockquote>
+<blockquote>
+<p>Tomcat是一个servlet服务器, 部署在Tomcat中的Java程序可以称为是一个servlet</p>
+</blockquote>
+<ul>
+<li>服务器从内存卸载servlet，调用destroy()方法</li>
+</ul>
+<h2 id="为什么servlet部署到tomcat就可以运行"><a href="#为什么servlet部署到tomcat就可以运行" class="headerlink" title="为什么servlet部署到tomcat就可以运行"></a>为什么servlet部署到tomcat就可以运行</h2><ul>
+<li>Tomcat的lib中的servlet-api.jar包含构建servlet需要的类和接口</li>
+<li>servlet编译后，必须使Tomcat能够找到，需要将servlet放置在tomcat中webapps目录的某个子目录下，并将servlet的名称输入到web.xml中</li>
+</ul>
+<h1 id="TODO-运行例子没成功"><a href="#TODO-运行例子没成功" class="headerlink" title="TODO 运行例子没成功"></a>TODO 运行例子没成功</h1><h1 id="TODO-API相关例子"><a href="#TODO-API相关例子" class="headerlink" title="TODO API相关例子"></a>TODO API相关例子</h1>
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是JavaBean"><span class="toc-text">什么是JavaBean</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是内省"><span class="toc-text">什么是内省</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加属性"><span class="toc-text">如何添加属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加事件"><span class="toc-text">如何添加事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解“JavaBean的配置设置可以保存在永久存储介质中，并且可以在以后恢复”"><span class="toc-text">理解“JavaBean的配置设置可以保存在永久存储介质中，并且可以在以后恢复”</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过CGI了解servlet"><span class="toc-text">通过CGI了解servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从http请求-到-servlet-servlet的生命周期"><span class="toc-text">从http请求 到 servlet(servlet的生命周期)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么servlet部署到tomcat就可以运行"><span class="toc-text">为什么servlet部署到tomcat就可以运行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO-运行例子没成功"><span class="toc-text">TODO 运行例子没成功</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO-API相关例子"><span class="toc-text">TODO API相关例子</span></a></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+

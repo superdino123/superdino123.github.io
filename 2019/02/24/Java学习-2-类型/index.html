@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Java学习-2-类型">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Java学习-2-类型</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-02-24</span>
+            <span class="time">17:49:55</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Java基础/">Java基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java/">#Java</a> <a class="tag" href="/tags/类型/">#类型</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <ul>
+<li>Java在运行时如何识别对象和类的信息<ul>
+<li>RTTI(Run-Time Type Identification 运行时类型识别)：假定在编译时已经知道了所有类型</li>
+<li>反射机制：允许在运行时发现和使用类的信息</li>
+</ul>
+</li>
+</ul>
+<h1 id="类型信息在运行时如何表示"><a href="#类型信息在运行时如何表示" class="headerlink" title="类型信息在运行时如何表示"></a>类型信息在运行时如何表示</h1><ul>
+<li>在此之前简述下类的加载机制，以此来理解 Class对象(用来表示运行时的类型信息)<ul>
+<li>JVM中的”类加载器”子系统在类第一次使用时，将其动态加载到JVM中<ul>
+<li>什么时候算是第一次使用一个类：<ul>
+<li>创建一个对该类的静态成员的引用时</li>
+<li>构造器也是类的静态方法，使用new操作符创建类的新对象也会被当作类的静态成员的引用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>首先 类加载器检查这个类的Class对象是否已经加载，如果未加载，默认的类加载器就会根据类名查找.class文件</li>
+<li>在这个类的字节码被加载时，会接受验证，确保没有被破坏</li>
+<li>一旦一个类的Class对象被载入内存，他就被用来创建这个类的所有对象<ul>
+<li>Class对象是什么<ul>
+<li>用来创建类的所有的”常规”对象</li>
+<li>每个类都有一个Class对象</li>
+<li>Class对象仅在需要的时候才被加载<h2 id="Class对象的使用"><a href="#Class对象的使用" class="headerlink" title="Class对象的使用"></a>Class对象的使用</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/ToyTest.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/ToyTest.java</a></li>
+<li>newInstance()来创建的类，必须带有默认构造器</li>
+</ul>
+<h2 id="如何以类字面常量生成对Class对象的引用"><a href="#如何以类字面常量生成对Class对象的引用" class="headerlink" title="如何以类字面常量生成对Class对象的引用"></a>如何以类字面常量生成对Class对象的引用</h2><ul>
+<li>类字面常量使用方式<pre><code>类名.class
+as: Apple.class
+</code></pre><ul>
+<li>优势：<ul>
+<li>在编译时就会受到检查</li>
+</ul>
+</li>
+<li>基本数据类型的包装器类有一个TYPE字段，指向的就是基本数据类型的Class对象</li>
+<li>当使用 .class 创建对Class对象的引用时，不会自动地初始化该Class对象</li>
+</ul>
+</li>
+<li>为了使用类做的准备工作有哪些<ul>
+<li>加载：类加载器查找字节码，并在字节码中创建一个Class对象</li>
+<li>链接：验证类中的字节码，为静态域分配存储空间</li>
+<li>初始化：如果该类具有超类，则对齐进行初始化，执行静态初始化器和静态初始化块</li>
+</ul>
+</li>
+</ul>
+<h2 id="关键字instanceof判断类型"><a href="#关键字instanceof判断类型" class="headerlink" title="关键字instanceof判断类型"></a>关键字instanceof判断类型</h2>
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类型信息在运行时如何表示"><span class="toc-text">类型信息在运行时如何表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Class对象的使用"><span class="toc-text">Class对象的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何以类字面常量生成对Class对象的引用"><span class="toc-text">如何以类字面常量生成对Class对象的引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字instanceof判断类型"><span class="toc-text">关键字instanceof判断类型</span></a></li></ol></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Java学习-3-集合">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Java学习-3-集合</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-02-23</span>
+            <span class="time">17:49:55</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Java基础/">Java基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java/">#Java</a> <a class="tag" href="/tags/集合/">#集合</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>C#中倾向叫集合，Java中倾向叫容器，本质是存储对象的方式</p>
+<a id="more"></a>
+<blockquote>
+<p>@SuppressWarnings注解及其参数表示只有有关”不受检查的异常”的警告信息应该被抑制</p>
+</blockquote>
+<h1 id="容器中泛型存在的意义"><a href="#容器中泛型存在的意义" class="headerlink" title="容器中泛型存在的意义"></a>容器中泛型存在的意义</h1><ul>
+<li>case<ul>
+<li>ArrayList 可以添加所有类型的对象; ArrayList<t> 只能添加T及继承T的子类的对象</t></li>
+<li>ArrayList遍历获取时取出来的是Object类型对象，需要进行类型转换; ArrayLst<t>遍历获取对象取出来的是T对象</t></li>
+</ul>
+</li>
+<li>意义<ul>
+<li>添加对象时限制类型，类型错误可以在编译时就报错</li>
+<li>获取对象类型明确，不用强转类型<h1 id="有哪些容器可以使用"><a href="#有哪些容器可以使用" class="headerlink" title="有哪些容器可以使用"></a>有哪些容器可以使用</h1></li>
+</ul>
+</li>
+<li>Collection: 独立元素序列<ul>
+<li>List: 按照插入的顺序保存元素<ul>
+<li>ArrayList：有序存储</li>
+<li>LinkedList：有序存储</li>
+</ul>
+</li>
+<li>Set: 不能有重复元素<ul>
+<li>HashSet:获取元素最快，无序存储</li>
+<li>TreeSet：按照比较结果的升序存储</li>
+<li>LinkedHashSet：按照被添加顺序存储</li>
+</ul>
+</li>
+<li>Queue: 按照排队规则来确定对象产生的顺序，只允许在容器的一端插入对象，并从另外一端移除对象</li>
+</ul>
+</li>
+<li>Map: 一组成对的”键值对”对象<ul>
+<li>HashMap: 提供了最快查找技术</li>
+<li>TreeMap:按照比较结果的升序保存键</li>
+<li>LinkedHashMap: 按照插入顺序保存键，与HashMap查找方式相同<h2 id="如何添加元素"><a href="#如何添加元素" class="headerlink" title="如何添加元素"></a>如何添加元素</h2></li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/AddingGroups.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/AddingGroups.java</a><h2 id="如何打印容器"><a href="#如何打印容器" class="headerlink" title="如何打印容器"></a>如何打印容器</h2></li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/PrintingContainers.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/PrintingContainers.java</a><h2 id="List使用的注意事项"><a href="#List使用的注意事项" class="headerlink" title="List使用的注意事项"></a>List使用的注意事项</h2></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器中泛型存在的意义"><span class="toc-text">容器中泛型存在的意义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有哪些容器可以使用"><span class="toc-text">有哪些容器可以使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加元素"><span class="toc-text">如何添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何打印容器"><span class="toc-text">如何打印容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List使用的注意事项"><span class="toc-text">List使用的注意事项</span></a></li></ol></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+

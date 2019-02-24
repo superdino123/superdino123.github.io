@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-02-21</span>
-            <span class="time">12:46:06</span>
+            <span class="time">17:49:55</span>
           </span>
           
           <!--  Categories  -->
@@ -117,18 +117,19 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Java-排序/">#Java 排序</a>
+<a class="tag" href="/tags/Java/">#Java</a> <a class="tag" href="/tags/排序/">#排序</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="前面"><a href="#前面" class="headerlink" title="前面"></a>前面</h1><ul>
+          <ul>
 <li>性能：衡量一切的一般标准</li>
 <li>代码：<a href="https://github.com/superdino123/ThinkInJavaTest/tree/master/src/sortmethods" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/tree/master/src/sortmethods</a></li>
 </ul>
-<h1 id="插入排序-——-Insertion-Sort-int-n"><a href="#插入排序-——-Insertion-Sort-int-n" class="headerlink" title="插入排序 —— Insertion Sort(int[] n)"></a>插入排序 —— Insertion Sort(int[] n)</h1><ul>
+<a id="more"></a>
+<h1 id="1-插入排序-——-Insertion-Sort-int-n"><a href="#1-插入排序-——-Insertion-Sort-int-n" class="headerlink" title="1.插入排序 —— Insertion Sort(int[] n)"></a>1.插入排序 —— Insertion Sort(int[] n)</h1><ul>
 <li>平均时间复杂度：O(n^2)<ul>
 <li>1 + 2 + 3 + 4 + 5 + … + n = (n+1)n/2 约等于 n^2</li>
 </ul>
@@ -154,7 +155,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="冒泡排序-——-BubbleSort-int-n"><a href="#冒泡排序-——-BubbleSort-int-n" class="headerlink" title="冒泡排序 —— BubbleSort(int[] n)"></a>冒泡排序 —— BubbleSort(int[] n)</h1><ul>
+<h1 id="2-冒泡排序-——-BubbleSort-int-n"><a href="#2-冒泡排序-——-BubbleSort-int-n" class="headerlink" title="2.冒泡排序 —— BubbleSort(int[] n)"></a>2.冒泡排序 —— BubbleSort(int[] n)</h1><ul>
 <li>时间复杂度：O(n^2)</li>
 <li>空间复杂度：O(1)</li>
 <li><p>code</p>
@@ -176,7 +177,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="选择排序-——-Selection-Sort-int-n"><a href="#选择排序-——-Selection-Sort-int-n" class="headerlink" title="选择排序 —— Selection Sort(int[] n)"></a>选择排序 —— Selection Sort(int[] n)</h1><ul>
+<h1 id="3-选择排序-——-Selection-Sort-int-n"><a href="#3-选择排序-——-Selection-Sort-int-n" class="headerlink" title="3.选择排序 —— Selection Sort(int[] n)"></a>3.选择排序 —— Selection Sort(int[] n)</h1><ul>
 <li>时间复杂度：O(n^2)</li>
 <li>空间复杂度：O(1)</li>
 <li><p>code</p>
@@ -199,7 +200,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="快速排序-——-QuickSort"><a href="#快速排序-——-QuickSort" class="headerlink" title="快速排序 —— QuickSort"></a>快速排序 —— QuickSort</h1><ul>
+<h1 id="4-快速排序-——-QuickSort"><a href="#4-快速排序-——-QuickSort" class="headerlink" title="4.快速排序 —— QuickSort"></a>4.快速排序 —— QuickSort</h1><ul>
 <li>平均时间复杂度：O(nlog2n)</li>
 <li>空间复杂度：O(log2n)</li>
 <li><p>code</p>
@@ -237,7 +238,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="归并排序-——-Merge-Sort"><a href="#归并排序-——-Merge-Sort" class="headerlink" title="归并排序 —— Merge Sort"></a>归并排序 —— Merge Sort</h1><ul>
+<h1 id="5-归并排序-——-Merge-Sort"><a href="#5-归并排序-——-Merge-Sort" class="headerlink" title="5.归并排序 —— Merge Sort"></a>5.归并排序 —— Merge Sort</h1><ul>
 <li>时间复杂度：O(nlog2n)</li>
 <li>空间复杂度：O(n)</li>
 <li><p>code</p>
@@ -277,6 +278,111 @@ public int[] mergeMehtod(int[] n, int first, int middle, int last) {
 </ul>
 </li>
 </ul>
+<h1 id="6-希尔排序-——-Shells-Sort"><a href="#6-希尔排序-——-Shells-Sort" class="headerlink" title="6.希尔排序 —— Shells Sort"></a>6.希尔排序 —— Shells Sort</h1><ul>
+<li>时间复杂度：O(1.3)</li>
+<li>空间复杂度：O(1)</li>
+<li><p>code</p>
+<pre><code>int[] shellSort(int[] n, int num) {
+    while(num != 0) {
+        for(int i = num; i &lt; n.length; i++) {
+            for(int j = i; j &gt;= num; j -= num) {
+                if(n[j] &lt; n[j - num]) {
+                    int temp = n[j];
+                    n[j] = n[j - num];
+                    n[j - num] = temp;
+                    System.out.println(n[0] + &quot;, &quot; + n[1] + &quot;, &quot; + n[2] + &quot;, &quot;
+                            + n[3] + &quot;, &quot; + n[4] + &quot;, &quot; + n[5] + &quot;, &quot; + n[6]);
+                }
+            }
+        }
+        num = num / 2;
+    }
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>间距逐渐缩小的插入排序</li>
+</ul>
+</li>
+</ul>
+<h1 id="7-计数排序-——-Counting-Sort"><a href="#7-计数排序-——-Counting-Sort" class="headerlink" title="7.计数排序 —— Counting Sort"></a>7.计数排序 —— Counting Sort</h1><ul>
+<li>时间复杂度：O(n+k)</li>
+<li>空间复杂度：O(k)</li>
+<li><p>code</p>
+<pre><code>public int[] countingSort(int[] n) {
+    int[] b= new int[n.length];
+    int max = n[0];
+    int min = n[0];
+    for(int item : n) {
+        if(max &lt; item) {
+            max = item;
+        }
+        if(min &gt; item) {
+            min = item;
+        }
+    }
+    int k = max - min + 1;
+    int[] c = new int[k];
+    for(int i = 0; i &lt; n.length; i++) {
+        c[n[i] - min] += 1;
+    }
+    for(int i = 1; i &lt; c.length; i++) {
+        c[i] = c[i] + c[i-1];
+    }
+    for(int i = n.length - 1; i &gt;=0; i--) {
+        b[--c[n[i] - min]] = n[i];
+    }
+    return b;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>将数组根据数值枚举到另一个数组进行数量统计，然后再遍历回原数组</li>
+</ul>
+</li>
+</ul>
+<h1 id="8-堆排序-——-Heap-Sort"><a href="#8-堆排序-——-Heap-Sort" class="headerlink" title="8.堆排序 —— Heap Sort"></a>8.堆排序 —— Heap Sort</h1><ul>
+<li>时间复杂度：O(nlogn)</li>
+<li>空间复杂度：O(1)</li>
+<li><p>code</p>
+<pre><code>int[] heapSort(int[] n, int top) {
+    if(n.length == 1)
+        return n;
+    int[] topNode = new int[top];
+    for(int i = n.length / 2 - 1; i &gt;= 0; i--) {
+        n = heapAdjust(n, i, n.length);
+    }
+    for(int i = n.length - 1; i &gt;= n.length - top; i--) {
+        int temp = n[0];
+        n[0] = n[i];
+        n[i] = temp;
+        topNode[n.length - 1 - i] = temp;
+        n = heapAdjust(n, 0, i);
+    }
+    return topNode;
+}
+// 将数组调整为大顶堆
+private int[] heapAdjust(int[] n, int parent, int length) {
+    int temp = n[parent];
+    int child = 2 * parent + 1;
+    while(child &lt; length) {
+        if(child + 1 &lt; length &amp;&amp; n[child] &lt; n[child + 1])
+            child++;
+        if(temp &gt;= n[child])
+            break;
+        n[parent] = n[child];
+        parent = child;
+        child = 2 * parent + 1;
+    }
+    n[parent] = temp;
+    return n;
+}
+</code></pre></li>
+<li>描述：<ul>
+<li>先初始化为最大/小堆</li>
+<li>将堆顶移到末尾，将其他数据再次重复”初始化，将堆顶移到末尾”操作</li>
+</ul>
+</li>
+</ul>
 
         </div>
       </div>
@@ -284,7 +390,7 @@ public int[] mergeMehtod(int[] n, int first, int middle, int last) {
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前面"><span class="toc-text">前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插入排序-——-Insertion-Sort-int-n"><span class="toc-text">插入排序 —— Insertion Sort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#冒泡排序-——-BubbleSort-int-n"><span class="toc-text">冒泡排序 —— BubbleSort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选择排序-——-Selection-Sort-int-n"><span class="toc-text">选择排序 —— Selection Sort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#快速排序-——-QuickSort"><span class="toc-text">快速排序 —— QuickSort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#归并排序-——-Merge-Sort"><span class="toc-text">归并排序 —— Merge Sort</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-插入排序-——-Insertion-Sort-int-n"><span class="toc-text">1.插入排序 —— Insertion Sort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-冒泡排序-——-BubbleSort-int-n"><span class="toc-text">2.冒泡排序 —— BubbleSort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-选择排序-——-Selection-Sort-int-n"><span class="toc-text">3.选择排序 —— Selection Sort(int[] n)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-快速排序-——-QuickSort"><span class="toc-text">4.快速排序 —— QuickSort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-归并排序-——-Merge-Sort"><span class="toc-text">5.归并排序 —— Merge Sort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-希尔排序-——-Shells-Sort"><span class="toc-text">6.希尔排序 —— Shells Sort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-计数排序-——-Counting-Sort"><span class="toc-text">7.计数排序 —— Counting Sort</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-堆排序-——-Heap-Sort"><span class="toc-text">8.堆排序 —— Heap Sort</span></a></li></ol>
 	</div>
 </aside>
       </div>
