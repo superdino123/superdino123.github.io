@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-02-24</span>
-            <span class="time">17:49:55</span>
+            <span class="time">17:55:08</span>
           </span>
           
           <!--  Categories  -->
@@ -131,6 +131,7 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
 <h1 id="类型信息在运行时如何表示"><a href="#类型信息在运行时如何表示" class="headerlink" title="类型信息在运行时如何表示"></a>类型信息在运行时如何表示</h1><ul>
 <li>在此之前简述下类的加载机制，以此来理解 Class对象(用来表示运行时的类型信息)<ul>
 <li>JVM中的”类加载器”子系统在类第一次使用时，将其动态加载到JVM中<ul>
@@ -147,13 +148,15 @@
 <li>Class对象是什么<ul>
 <li>用来创建类的所有的”常规”对象</li>
 <li>每个类都有一个Class对象</li>
-<li>Class对象仅在需要的时候才被加载<h2 id="Class对象的使用"><a href="#Class对象的使用" class="headerlink" title="Class对象的使用"></a>Class对象的使用</h2></li>
+<li>Class对象仅在需要的时候才被加载</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h2 id="Class对象的使用"><a href="#Class对象的使用" class="headerlink" title="Class对象的使用"></a>Class对象的使用</h2><ul>
 <li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/ToyTest.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/ToyTest.java</a></li>
 <li>newInstance()来创建的类，必须带有默认构造器</li>
 </ul>
