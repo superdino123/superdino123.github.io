@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-02-24</span>
-            <span class="time">17:55:08</span>
+            <span class="time">00:41:57</span>
           </span>
           
           <!--  Categories  -->
@@ -126,7 +126,7 @@
         <div class="post-content">
           <ul>
 <li>Java在运行时如何识别对象和类的信息<ul>
-<li>RTTI(Run-Time Type Identification 运行时类型识别)：假定在编译时已经知道了所有类型</li>
+<li>RTTI(Run-Time Type Identification 运行时类型识别)：假定在编译时已经知道了所有类型, 通过clas对象访问</li>
 <li>反射机制：允许在运行时发现和使用类的信息</li>
 </ul>
 </li>
@@ -175,18 +175,62 @@ as: Apple.class
 <li>为了使用类做的准备工作有哪些<ul>
 <li>加载：类加载器查找字节码，并在字节码中创建一个Class对象</li>
 <li>链接：验证类中的字节码，为静态域分配存储空间</li>
-<li>初始化：如果该类具有超类，则对齐进行初始化，执行静态初始化器和静态初始化块</li>
+<li>初始化：如果该类具有超类，则对其进行初始化，执行静态初始化器和静态初始化块</li>
 </ul>
 </li>
 </ul>
-<h2 id="关键字instanceof判断类型"><a href="#关键字instanceof判断类型" class="headerlink" title="关键字instanceof判断类型"></a>关键字instanceof判断类型</h2>
+<h2 id="类型转换前先做检查"><a href="#类型转换前先做检查" class="headerlink" title="类型转换前先做检查"></a>类型转换前先做检查</h2><ul>
+<li><p>instanceof 关键字</p>
+<pre><code>if(x instanceof ClassType)
+    (ClassType)x.XX();
+</code></pre></li>
+<li><p>instanceof方法</p>
+<pre><code>xxObj.isInstance(xxType)
+</code></pre><ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/PetCount3.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/PetCount3.java</a></li>
+</ul>
+</li>
+<li>instanceof 与 Class 的异同<ul>
+<li>instanceof保持了类型的概念，指的是”你是这个类吗，或者是这个类的派生类吗“</li>
+<li>==实际比较的是class对象，不考虑继承</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/FamilyVsExactType.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/FamilyVsExactType.java</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="工厂模式的应用"><a href="#工厂模式的应用" class="headerlink" title="工厂模式的应用"></a>工厂模式的应用</h2><ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/RegisteredFactories.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/RegisteredFactories.java</a></li>
+</ul>
+<h1 id="反射是什么"><a href="#反射是什么" class="headerlink" title="反射是什么"></a>反射是什么</h1><ul>
+<li>当某个对象的类型在编译时已知，就可以通过class对象获取到相关的类信息(RTTI方式)</li>
+<li>当编译时无法知道某个对象的类型时，需要用到反射</li>
+<li>什么时候会出现编译时无法知道某个对象的类型？<ul>
+<li>基于构件的编程，拖拽控件需要暴露处理相关事件的方法信息</li>
+<li>提供在跨网络的远程平台上创建和运行对象的能力，允许一个Java程序将对象分布到多台机器上</li>
+</ul>
+</li>
+</ul>
+<h2 id="RTTI与反射的区别"><a href="#RTTI与反射的区别" class="headerlink" title="RTTI与反射的区别"></a>RTTI与反射的区别</h2><ul>
+<li>RTTI，编译器在编译时打开和检查.class文件</li>
+<li>反射机制，.class文件在编译时是不可获取的，所以在运行时打开和检查.class文件</li>
+<li>通过反射机制获取类的完整接口：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/ShowMethods.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/typeinfo/ShowMethods.java</a></li>
+</ul>
+<h2 id="代理是什么"><a href="#代理是什么" class="headerlink" title="代理是什么"></a>代理是什么</h2><ul>
+<li>是一种基本的设计模式</li>
+<li>是 为了提供额外的或不同的操作，而插入的用来代替”实际“对象 的对象，这些操作通常涉及与实际对象的通信，因此代理通常充当中间人的角色</li>
+<li>为什么要用代理<ul>
+<li>想要将额外的操作从 实际 对象中分离到不同的地方</li>
+</ul>
+</li>
+<li>Java动态代理是什么，有什么优点</li>
+</ul>
+
         </div>
       </div>
       <div class="col-lg-4  col-md-2">
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类型信息在运行时如何表示"><span class="toc-text">类型信息在运行时如何表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Class对象的使用"><span class="toc-text">Class对象的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何以类字面常量生成对Class对象的引用"><span class="toc-text">如何以类字面常量生成对Class对象的引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字instanceof判断类型"><span class="toc-text">关键字instanceof判断类型</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类型信息在运行时如何表示"><span class="toc-text">类型信息在运行时如何表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Class对象的使用"><span class="toc-text">Class对象的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何以类字面常量生成对Class对象的引用"><span class="toc-text">如何以类字面常量生成对Class对象的引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换前先做检查"><span class="toc-text">类型转换前先做检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式的应用"><span class="toc-text">工厂模式的应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射是什么"><span class="toc-text">反射是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTTI与反射的区别"><span class="toc-text">RTTI与反射的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理是什么"><span class="toc-text">代理是什么</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
