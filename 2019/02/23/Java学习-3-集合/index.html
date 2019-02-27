@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-02-23</span>
-            <span class="time">00:46:52</span>
+            <span class="time">10:41:31</span>
           </span>
           
           <!--  Categories  -->
@@ -125,6 +125,7 @@
         <!-- Post Main Content -->
         <div class="post-content">
           <p>C#中倾向叫集合，Java中倾向叫容器，本质是存储对象的方式</p>
+<p>优化是一个很棘手的问题，最好的策略就是置之不顾，直到你发现需要担心它了</p>
 <a id="more"></a>
 <ul>
 <li>@SuppressWarnings注解及其参数表示只有有关”不受检查的异常”的警告信息应该被抑制</li>
@@ -166,14 +167,78 @@
 </ul>
 <h2 id="如何添加元素"><a href="#如何添加元素" class="headerlink" title="如何添加元素"></a>如何添加元素</h2><pre><code>- https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/AddingGroups.java
 </code></pre><h2 id="如何打印容器"><a href="#如何打印容器" class="headerlink" title="如何打印容器"></a>如何打印容器</h2><pre><code>- https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/PrintingContainers.java
-</code></pre><h2 id="List使用的注意事项"><a href="#List使用的注意事项" class="headerlink" title="List使用的注意事项"></a>List使用的注意事项</h2>
+</code></pre><h2 id="List使用的注意事项"><a href="#List使用的注意事项" class="headerlink" title="List使用的注意事项"></a>List使用的注意事项</h2><ul>
+<li>ArrayList 便于随机访问元素，插入移除元素较慢</li>
+<li>LinkedList 插入和删除元素代价较低，随机访问较慢</li>
+<li>List的使用：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/ListFeatures.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/ListFeatures.java</a></li>
+</ul>
+<h2 id="迭代器-设计模式-的应用"><a href="#迭代器-设计模式-的应用" class="headerlink" title="迭代器(设计模式)的应用"></a>迭代器(设计模式)的应用</h2><ul>
+<li>迭代器解决了什么问题：<ul>
+<li>在使用容器的过程中，不希望关心容器的类型。 如：原本对List编码，我想切换成Set，还需要从头修改代码</li>
+<li>将遍历序列的操作与序列底层的结构分离</li>
+</ul>
+</li>
+<li>迭代器Iterator的限制：<ul>
+<li>只能单向移动</li>
+<li>api<ul>
+<li>iterator.next()</li>
+<li>iterator.hasNext()</li>
+<li>iterator.remove()</li>
+</ul>
+</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/CrossContainerIteration.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/CrossContainerIteration.java</a></li>
+</ul>
+</li>
+<li>ListIterator与Iterator的区别<ul>
+<li>只能用于各种List类的访问</li>
+<li>可以双向移动</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/ListIteration.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/ListIteration.java</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="LinkedList的使用"><a href="#LinkedList的使用" class="headerlink" title="LinkedList的使用"></a>LinkedList的使用</h2><ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/LinkedListFeatures.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/LinkedListFeatures.java</a></li>
+<li>api<ul>
+<li>get<ul>
+<li>obj.getFirst()</li>
+<li>obj.element()</li>
+<li>obj.peek()</li>
+</ul>
+</li>
+<li>remove<ul>
+<li>obj.remove()</li>
+<li>obj.removeFirst()</li>
+<li>obj.poll()</li>
+<li>obj.removeLst()</li>
+</ul>
+</li>
+<li>add<ul>
+<li>obj.addFirst(new XType())</li>
+<li>obj.offer(new XType())</li>
+<li>obj.add(new XType())</li>
+<li>obj.addLast(new XType())</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Stack的实现"><a href="#Stack的实现" class="headerlink" title="Stack的实现"></a>Stack的实现</h2><ul>
+<li>LinkedList具有能够直接实现栈的所有功能的方法，可以直接将LinkedList作为栈使用</li>
+<li>封装栈：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/Stack.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/Stack.java</a></li>
+</ul>
+<h2 id="Set的应用"><a href="#Set的应用" class="headerlink" title="Set的应用"></a>Set的应用</h2><ul>
+<li>Set不保存重复的元素</li>
+<li>Set主要用于 查找元素 和 测试归属性</li>
+<li>Set与Collection具有完全一样的接口，只是行为不同</li>
+</ul>
+
         </div>
       </div>
       <div class="col-lg-4  col-md-2">
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器中泛型存在的意义"><span class="toc-text">容器中泛型存在的意义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有哪些容器可以使用"><span class="toc-text">有哪些容器可以使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加元素"><span class="toc-text">如何添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何打印容器"><span class="toc-text">如何打印容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List使用的注意事项"><span class="toc-text">List使用的注意事项</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器中泛型存在的意义"><span class="toc-text">容器中泛型存在的意义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有哪些容器可以使用"><span class="toc-text">有哪些容器可以使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加元素"><span class="toc-text">如何添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何打印容器"><span class="toc-text">如何打印容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List使用的注意事项"><span class="toc-text">List使用的注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器-设计模式-的应用"><span class="toc-text">迭代器(设计模式)的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList的使用"><span class="toc-text">LinkedList的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack的实现"><span class="toc-text">Stack的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set的应用"><span class="toc-text">Set的应用</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
