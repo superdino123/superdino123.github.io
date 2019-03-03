@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-02-23</span>
-            <span class="time">10:41:31</span>
+            <span class="time">16:00:19</span>
           </span>
           
           <!--  Categories  -->
@@ -231,6 +231,27 @@
 <li>Set主要用于 查找元素 和 测试归属性</li>
 <li>Set与Collection具有完全一样的接口，只是行为不同</li>
 </ul>
+<h2 id="Queue的应用"><a href="#Queue的应用" class="headerlink" title="Queue的应用"></a>Queue的应用</h2><ul>
+<li>FIFO 先进先出容器</li>
+<li>LinkedList提供了方法支持队列的行为 ，并实现了Queue接口，可以用作Queue的实现</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/QueueDemo.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/QueueDemo.java</a></li>
+<li>优先级队列：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/PriorityQueueDemo.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/PriorityQueueDemo.java</a></li>
+</ul>
+<h2 id="对比Collection接口与Iterator方法"><a href="#对比Collection接口与Iterator方法" class="headerlink" title="对比Collection接口与Iterator方法"></a>对比Collection接口与Iterator方法</h2><ul>
+<li>实现Collection意味着需要提供iterator()方法</li>
+<li>两者的功能是基本相同的</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/InterfaceVsIterator.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/InterfaceVsIterator.java</a></li>
+<li>生成Iterator是将队列与消费队列的方法连接在一起耦合度最小的方式，并且与实现Collection相比，它在序列类上所施加的约束也小得多</li>
+</ul>
+<h2 id="为什么foreach可以遍历所有Collection对象"><a href="#为什么foreach可以遍历所有Collection对象" class="headerlink" title="为什么foreach可以遍历所有Collection对象"></a>为什么foreach可以遍历所有Collection对象</h2><ul>
+<li>因为Iterable接口能够产生Iterator的iterator()方法，并且Iterator接口被foreach用来在序列中移动，因此可以遍历任何实现Iterable的类</li>
+<li>遍历系统变量：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/EnvironmentVariables.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/EnvironmentVariables.java</a></li>
+<li>适配器与Iterable中的应用：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/MultiIterableClass.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/collections/MultiIterableClass.java</a></li>
+<li>Arrays.asList()产生的List对象的物理实现使用底层数组，如果列表有修改，原数组也会相应修改</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>新程序中不应该使用过时的Vector, Hashtable, Stack</li>
+</ul>
 
         </div>
       </div>
@@ -238,7 +259,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器中泛型存在的意义"><span class="toc-text">容器中泛型存在的意义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有哪些容器可以使用"><span class="toc-text">有哪些容器可以使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加元素"><span class="toc-text">如何添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何打印容器"><span class="toc-text">如何打印容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List使用的注意事项"><span class="toc-text">List使用的注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器-设计模式-的应用"><span class="toc-text">迭代器(设计模式)的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList的使用"><span class="toc-text">LinkedList的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack的实现"><span class="toc-text">Stack的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set的应用"><span class="toc-text">Set的应用</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#容器中泛型存在的意义"><span class="toc-text">容器中泛型存在的意义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有哪些容器可以使用"><span class="toc-text">有哪些容器可以使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何添加元素"><span class="toc-text">如何添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何打印容器"><span class="toc-text">如何打印容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List使用的注意事项"><span class="toc-text">List使用的注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器-设计模式-的应用"><span class="toc-text">迭代器(设计模式)的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList的使用"><span class="toc-text">LinkedList的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack的实现"><span class="toc-text">Stack的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set的应用"><span class="toc-text">Set的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Queue的应用"><span class="toc-text">Queue的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比Collection接口与Iterator方法"><span class="toc-text">对比Collection接口与Iterator方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么foreach可以遍历所有Collection对象"><span class="toc-text">为什么foreach可以遍历所有Collection对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
