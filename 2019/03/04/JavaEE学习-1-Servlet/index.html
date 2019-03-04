@@ -8,10 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="Hark Zheng">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Hark的博客">
+  <meta property="og:title" content="JavaEE学习-1-Servlet">
   <meta property="og:description" content="软件 技术 学习 分享">
   <meta property="og:site_name" content="Hark的博客">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:image" content="http://superdino123.github.io.git">
   
     <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
@@ -37,8 +37,7 @@
 
   <body>
 
-    <!-- Archive Header -->
-<!-- Page Header -->
+    <!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
@@ -46,7 +45,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Archives</p>
+          <p class="title">JavaEE学习-1-Servlet</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -91,106 +90,70 @@
   </div>
 </header>
 
-<!-- Archive List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      
-        <div class="archive-item">
-  <a href="/2019/03/04/JavaEE学习-1-Servlet/" class="post-title">
-    JavaEE学习-1-Servlet
-  </a>
-  <div class="date text-muted">Posted on 2019-03-04 10:04:25</div>
-</div>
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-03-04</span>
+            <span class="time">18:49:57</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
 
-      
-        <div class="archive-item">
-  <a href="/2019/03/01/设计模式/" class="post-title">
-    设计模式
-  </a>
-  <div class="date text-muted">Posted on 2019-03-01 18:34:45</div>
-</div>
+<a href="/categories/JavaEE学习/">JavaEE学习</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-      
-        <div class="archive-item">
-  <a href="/2019/02/23/Java学习-3-集合/" class="post-title">
-    Java学习-3-集合
-  </a>
-  <div class="date text-muted">Posted on 2019-02-23 22:31:52</div>
-</div>
+<a class="tag" href="/tags/Java/">#Java</a> <a class="tag" href="/tags/Servlet/">#Servlet</a>
 
-      
-        <div class="archive-item">
-  <a href="/2019/02/23/JavaBean-Servelet初识/" class="post-title">
-    JavaBean&amp;Servelet初识
-  </a>
-  <div class="date text-muted">Posted on 2019-02-23 12:55:53</div>
-</div>
 
-      
-        <div class="archive-item">
-  <a href="/2019/02/22/Java学习-2-类型/" class="post-title">
-    Java学习-2-类型
-  </a>
-  <div class="date text-muted">Posted on 2019-02-22 11:22:23</div>
-</div>
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么"></a>Servlet是什么</h1><ul>
+<li>运行在Web服务器中的Java小程序</li>
+<li>接受和响应来自Web客户端的请求，使用HTTP进行通信</li>
+<li>是所有Web应用程序的核心类</li>
+<li>唯一一个既可以直接处理请求和响应用户请求，也可以将处理工作委托给应用中的其他部分的类</li>
+<li><p>类图<br>//TODO</p>
+</li>
+<li><p>空servlet</p>
+<pre><code>public class HelloServlet extends HttpServlet{
 
-      
-        <div class="archive-item">
-  <a href="/2019/02/21/常用的排序算法/" class="post-title">
-    常用的排序算法
-  </a>
-  <div class="date text-muted">Posted on 2019-02-21 22:55:15</div>
-</div>
+}
+</code></pre><ul>
+<li>任何未重写的HTTPServlet方法都将返回一个HTTP状态405作为响应</li>
+</ul>
+</li>
+</ul>
 
-      
-        <div class="archive-item">
-  <a href="/2018/10/19/Java类库/" class="post-title">
-    Java类库
-  </a>
-  <div class="date text-muted">Posted on 2018-10-19 22:00:57</div>
-</div>
-
-      
-        <div class="archive-item">
-  <a href="/2018/09/02/Java学习-1-异常处理/" class="post-title">
-    Java学习-1-异常处理
-  </a>
-  <div class="date text-muted">Posted on 2018-09-02 22:44:44</div>
-</div>
-
-      
-        <div class="archive-item">
-  <a href="/2018/08/15/学习计划/" class="post-title">
-    学习计划
-  </a>
-  <div class="date text-muted">Posted on 2018-08-15 10:03:00</div>
-</div>
-
-      
-        <div class="archive-item">
-  <a href="/2018/06/03/WPFKTV信息管理&点歌系统/" class="post-title">
-    KTV信息管理&amp;点歌系统(WPF)
-  </a>
-  <div class="date text-muted">Posted on 2018-06-03 21:58:47</div>
-</div>
-
-      
-
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Servlet是什么"><span class="toc-text">Servlet是什么</span></a></li></ol>
+	</div>
+</aside>
+      </div>
     </div>
   </div>
-</div>
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
-          
-          
-      </ul>
-    </div>
-  </div>
-</div>
+</article>
 
 
 
