@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Hark Zheng">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="JavaEE学习-1-Servlet">
+  <meta property="og:title" content="JavaEE学习-1-Servlet应用">
   <meta property="og:description" content="软件 技术 学习 分享">
   <meta property="og:site_name" content="Hark的博客">
   <meta property="og:type" content="article">
@@ -45,7 +45,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">JavaEE学习-1-Servlet</p>
+          <p class="title">JavaEE学习-1-Servlet应用</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-04</span>
-            <span class="time">18:49:57</span>
+            <span class="time">00:08:02</span>
           </span>
           
           <!--  Categories  -->
@@ -124,21 +124,212 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么"></a>Servlet是什么</h1><ul>
+          <ul>
+<li>code: <a href="https://github.com/superdino123/ServletTest" target="_blank" rel="noopener">https://github.com/superdino123/ServletTest</a></li>
+</ul>
+<h1 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么"></a>Servlet是什么</h1><ul>
 <li>运行在Web服务器中的Java小程序</li>
 <li>接受和响应来自Web客户端的请求，使用HTTP进行通信</li>
 <li>是所有Web应用程序的核心类</li>
-<li>唯一一个既可以直接处理请求和响应用户请求，也可以将处理工作委托给应用中的其他部分的类</li>
-<li><p>类图<br>//TODO</p>
+<li><p>唯一一个既可以直接处理请求和响应用户请求，也可以将处理工作委托给应用中的其他部分的类</p>
 </li>
 <li><p>空servlet</p>
 <pre><code>public class HelloServlet extends HttpServlet{
 
 }
 </code></pre><ul>
-<li>任何未重写的HTTPServlet方法都将返回一个HTTP状态405作为响应</li>
+<li>任何未重写的HTTPServlet方法都将返回一个HTTP状态405(Method not allowed)作为响应</li>
+<li>case: <a href="http://localhost:8080/ServletTest/hello" target="_blank" rel="noopener">http://localhost:8080/ServletTest/hello</a></li>
 </ul>
 </li>
+<li><p>Serlvet生命周期</p>
+<ul>
+<li>init()方法：Servlet构造完成后，响应第一个请求前调用</li>
+<li>destroy()方法：Web容器关闭Servlet时，将会调用。通常在Web应用程序被停止或卸载时立即调用</li>
+<li><a href="http://localhost:8080/ServletTest/helloWorld" target="_blank" rel="noopener">http://localhost:8080/ServletTest/helloWorld</a></li>
+</ul>
+</li>
+<li><p>应该使用destroy方法清理servlet持有的资源</p>
+<ul>
+<li>应用程序被卸载但服务器仍然运行的情况下，通过垃圾回收清理资源可能导致应用程序无法卸载或部分卸载</li>
+</ul>
+</li>
+</ul>
+<h1 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h1><ul>
+<li><p>class</p>
+<ul>
+<li>GenericServlet: Servlet, ServletConfig, Serializable<ul>
+<li>HttpServlet</li>
+<li>ServletRequest</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>interface</p>
+<ul>
+<li>ServletRequest<ul>
+<li>HttpServletRequest</li>
+</ul>
+</li>
+<li>ServletResponse<ul>
+<li>HttpServletResponse</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="JavaWeb程序结构"><a href="#JavaWeb程序结构" class="headerlink" title="JavaWeb程序结构"></a>JavaWeb程序结构</h1><ul>
+<li>JavaWeb<ul>
+<li>src 源代码<ul>
+<li>main<ul>
+<li>java<ul>
+<li>packgename(as：com.blog)<ul>
+<li>.java文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>test 测试代码</li>
+</ul>
+</li>
+<li>target<ul>
+<li>classes 编译后的.class文件</li>
+<li>test-classes 测试代码编译后的.class文件</li>
+</ul>
+</li>
+<li>WebContent<ul>
+<li>META-INF <ul>
+<li>包含了应用程序清单文件，存储特定Web容器或应用程序服务器所需要的资源。</li>
+<li>不在应用程序类路径上，不能使用ClassLoader获得该目录的资源</li>
+<li>MANIFEST.MF</li>
+</ul>
+</li>
+<li>WEB-INF<ul>
+<li>jsp 【可选】.jsp文件</li>
+<li>lib 项目中用到的第三方jar包</li>
+<li>web.xml 部署描述符文件(as: 配置servlet路由)</li>
+</ul>
+</li>
+<li>index.jsp 【可选】前端页面入口</li>
+<li>source 【可选】css/js/img等静态资源</li>
+</ul>
+</li>
+<li>pom.xml maven引入配置</li>
+</ul>
+</li>
+</ul>
+<h1 id="web-xml文件详解"><a href="#web-xml文件详解" class="headerlink" title="web.xml文件详解"></a>web.xml文件详解</h1><ul>
+<li>display-name : 应用程序名称</li>
+<li>web-app中version属性：使用的Servlet API版本</li>
+<li><p>添加一个Servlet标签</p>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;helloServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.blog.helloServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt; //在Web应用程序启动后立即启动该Servlet
+&lt;/servlet&gt;
+</code></pre></li>
+<li><p>将servlet映射到URL</p>
+<pre><code>&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;helloServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;
+    &lt;url-pattern&gt;/hello1&lt;/url-pattern&gt; //支持多URL映射
+&lt;/servlet-mapping&gt;
+</code></pre></li>
+</ul>
+<h1 id="用注释替换web-xml"><a href="#用注释替换web-xml" class="headerlink" title="用注释替换web.xml"></a>用注释替换web.xml</h1><pre><code>@WebServlet(
+    name = &quot;getAndPostTestServlet&quot;,
+    urlPatterns = {&quot;/getPostTest&quot;, &quot;/getAndPostTest&quot;},
+    loadOnStartup = 1
+)
+class ClassName extends HttpServlet{
+
+}
+</code></pre><h1 id="创建一个Servlet的HelloWorld"><a href="#创建一个Servlet的HelloWorld" class="headerlink" title="创建一个Servlet的HelloWorld"></a>创建一个Servlet的HelloWorld</h1><ul>
+<li>创建一个maven项目</li>
+<li>添加Dynamic Web Module模块</li>
+<li>配置pom.xml引入servlet</li>
+<li>创建Java文件</li>
+<li>添加web.xml文件并配置servlet</li>
+<li>运行程序<ul>
+<li><a href="http://localhost:8080/ServletTest/helloWorld" target="_blank" rel="noopener">http://localhost:8080/ServletTest/helloWorld</a></li>
+</ul>
+</li>
+<li>遇到问题<ul>
+<li>访问url报错500, ClassNotFoundException, 怎么处理？<ul>
+<li>情况1：servlet类未被编译为.class文件<ul>
+<li>在target文件夹下确认指定的servlet是否被编译为.class文件，如果没有，则重启IDE，再次编译</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Servlet-API"><a href="#Servlet-API" class="headerlink" title="Servlet API"></a>Servlet API</h1><ul>
+<li>Servlet API未区分get/post传递的参数，都可以调用请求对象中与参数相关的方法获取它们</li>
+<li><p>API</p>
+<ul>
+<li>获取参数<ul>
+<li>getParameter(): 返回参数的单个值</li>
+<li>getParameterValues(): 返回参数的值的数组</li>
+<li>getOarameterMap(): 返回一个包含了所有参数名值对的java.util.Map&lt;String, String[]&gt;</li>
+<li>getOarameterNames(): 返回所有可用的参数的名字的枚举</li>
+</ul>
+</li>
+<li>确定请求内容<ul>
+<li>getContentType(): 返回请求的MIME内容类型</li>
+<li>getContentLength()/getContentLengthLong：返回了请求正文的长度</li>
+<li>getCharacterEncoding(): 返回请求内容的字符编码</li>
+</ul>
+</li>
+<li>读取请求的内容<ul>
+<li>getInputStream(): 返回javax.servlet.ServletInputStream (二进制格式必须使用ServletInputStream)</li>
+<li>getReader()：返回一个java.io.BufferedReader (UTF-8/ISO-8859-1推荐getReader)</li>
+</ul>
+</li>
+<li>获取请求特有数据<ul>
+<li>getRequestURL(): 返回客户端用于创建请求的完整URL</li>
+<li>getRequestURI(): 返回URL中服务器路径部分</li>
+<li>getServletPath(): 返回更少的URL</li>
+<li>getHeader(): 返回指定名字的头数据</li>
+<li>getHeaderNames(): 返回请求中所有头数据的名字的枚举</li>
+<li>getIntHeader(): 某个特定的头的值一直是数字，可以用此方法返回</li>
+<li>getDataHeader(): 对于可以表示有效时间戳的头数据，可以返回一个Unix时间戳</li>
+</ul>
+</li>
+<li>会话/Cookies<ul>
+<li>getSession()</li>
+<li>getCookies()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在使用含有post变量的请求时，最好使用参数方法，不要使用getInputStream和getReader方法</p>
+</li>
+</ul>
+<h1 id="HttpServletResponse的应用"><a href="#HttpServletResponse的应用" class="headerlink" title="HttpServletResponse的应用"></a>HttpServletResponse的应用</h1><ul>
+<li>编写响应正文<ul>
+<li>getOutputStream() 返回二进制数据，必须使用此方法</li>
+<li>getWriter()</li>
+<li>不可同时使用这两种方法<ul>
+<li>调用其中一个后，再调用另外一个会触发IllegalStateException异常</li>
+</ul>
+</li>
+<li>getWriter()调用后，setContentType(), setCharacterEncoding()将被忽略</li>
+<li>setHeader()/setIntHeader()/setDateHeader(): 设置几乎任何希望设置的头数据</li>
+<li>addHeader()/addIntHeader()/addDateHeader(): 添加但不覆盖原有头数据</li>
+<li>setStatus(): 设置HTTP响应状态码</li>
+<li>sendErrot(): 设置状态码</li>
+<li>sendRedirect(): 将客户端重定向至另一个URL</li>
+</ul>
+</li>
+<li>case: <a href="http://localhost:8080/ServletTest/getPostTest" target="_blank" rel="noopener">http://localhost:8080/ServletTest/getPostTest</a></li>
+<li>多值参数case: <a href="http://localhost:8080/ServletTest/checkboxes" target="_blank" rel="noopener">http://localhost:8080/ServletTest/checkboxes</a></li>
+</ul>
+<h1 id="初始化参数的应用"><a href="#初始化参数的应用" class="headerlink" title="初始化参数的应用"></a>初始化参数的应用</h1><ul>
+<li>应用场景：</li>
 </ul>
 
         </div>
@@ -147,7 +338,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Servlet是什么"><span class="toc-text">Servlet是什么</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Servlet是什么"><span class="toc-text">Servlet是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类图"><span class="toc-text">类图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaWeb程序结构"><span class="toc-text">JavaWeb程序结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web-xml文件详解"><span class="toc-text">web.xml文件详解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用注释替换web-xml"><span class="toc-text">用注释替换web.xml</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建一个Servlet的HelloWorld"><span class="toc-text">创建一个Servlet的HelloWorld</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Servlet-API"><span class="toc-text">Servlet API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HttpServletResponse的应用"><span class="toc-text">HttpServletResponse的应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化参数的应用"><span class="toc-text">初始化参数的应用</span></a></li></ol>
 	</div>
 </aside>
       </div>
