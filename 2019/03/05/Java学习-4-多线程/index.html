@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Java学习-4-多线程">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Java学习-4-多线程</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-03-05</span>
+            <span class="time">13:42:28</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Java基础/">Java基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java/">#Java</a> <a class="tag" href="/tags/线程/">#线程</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>并发 具有可论证的确定性，但是实际上具有不可确定性</p>
+<a id="more"></a>
+<h1 id="为什么需要并发"><a href="#为什么需要并发" class="headerlink" title="为什么需要并发"></a>为什么需要并发</h1><ul>
+<li>是程序执行速度得到提高</li>
+<li>设计程序提供更易用的模型</li>
+<li>产生具有可响应的用户界面</li>
+</ul>
+<h2 id="场景1：更快的执行速度"><a href="#场景1：更快的执行速度" class="headerlink" title="场景1：更快的执行速度"></a>场景1：更快的执行速度</h2><ul>
+<li>并发通常是提高运行在单处理器上的程序的性能</li>
+<li>线程阻塞：程序中的某个任务因为该程序控制范围之外的某些条件(通常是I/O)而导致不能继续执行</li>
+<li>如果没有任务会阻塞，单处理器机器上使用并发就没有意义</li>
+<li>进程：运行在自己的地址空间内的自包容的程序</li>
+<li>编写多线程最基本的困难<ul>
+<li>协调不通线程驱动的任务之间对这些资源的使用，以使得这些资源不会同时被多个任务访问</li>
+</ul>
+</li>
+<li>函数型语言：如Erlang, 将并发任务彼此隔离，是专门的并发语言</li>
+</ul>
+<h2 id="场景2：改进代码设计"><a href="#场景2：改进代码设计" class="headerlink" title="场景2：改进代码设计"></a>场景2：改进代码设计</h2><ul>
+<li>线程机制 抢占式 PK 协作式</li>
+<li>抢占式<ul>
+<li>调度机制周期性的中断线程</li>
+</ul>
+</li>
+<li>协作式<ul>
+<li>每个任务都会自动地放弃控制</li>
+<li>上下文切换的开销比抢占式系统低廉许多</li>
+<li>对线程数量在理论上没有限制</li>
+</ul>
+</li>
+</ul>
+<h1 id="线程驱动任务"><a href="#线程驱动任务" class="headerlink" title="线程驱动任务"></a>线程驱动任务</h1><h2 id="描述一个任务"><a href="#描述一个任务" class="headerlink" title="描述一个任务"></a>描述一个任务</h2><ul>
+<li>实现Runnable接口并编写run()方法<ul>
+<li>case: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/LiftOff.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/LiftOff.java</a></li>
+</ul>
+</li>
+<li>run()方法不产生任何内在的线程能力，要实现线程行为，必须显示地将一个任务附着到线程上</li>
+</ul>
+<h2 id="将任务附着到线程上"><a href="#将任务附着到线程上" class="headerlink" title="将任务附着到线程上"></a>将任务附着到线程上</h2><ul>
+<li>Thread类<ul>
+<li>构造器需要一个Runnable对象，调用start()方法为该线程执行初始化操作，然后调用Runnable的run()方法，在新线程中启动任务</li>
+<li>case: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/BasicThreads.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/BasicThreads.java</a></li>
+</ul>
+</li>
+<li>一个线程会创建一个单独的执行线程，对start()调用完成后，它仍旧会继续存在</li>
+</ul>
+<h2 id="执行器-Executor-管理Thread对象-——-线程池"><a href="#执行器-Executor-管理Thread对象-——-线程池" class="headerlink" title="执行器(Executor)管理Thread对象 —— 线程池"></a>执行器(Executor)管理Thread对象 —— 线程池</h2><ul>
+<li>ExecutorService类型 ： 具有服务生命周期的Executor<ul>
+<li>知道如何构建恰当的上下文来执行Runnable对象</li>
+<li>通常单个Executor被用来创建和管理系统中所有的任务</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CachedThreadPool.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CachedThreadPool.java</a></li>
+</ul>
+</li>
+<li>执行器种类<ul>
+<li>CachedThreadPool</li>
+<li>FixedThreadPool<ul>
+<li>可以一次性预先执行代价高昂的线程分配</li>
+<li>限制线程数量</li>
+</ul>
+</li>
+<li>SingleThreadExecutor<ul>
+<li>线程数为1的FixedThreadPool</li>
+<li>序列化所有提交给它的任务，并维护自己的悬挂任务队列</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="从任务中产生返回值"><a href="#从任务中产生返回值" class="headerlink" title="从任务中产生返回值"></a>从任务中产生返回值</h2><ul>
+<li>实现Callable接口，替换掉Runnable接口</li>
+<li>submit()方法会产生Future对象</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/TaskWithResult.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/TaskWithResult.java</a></li>
+</ul>
+<h2 id="休眠-终止任务指定的时间"><a href="#休眠-终止任务指定的时间" class="headerlink" title="休眠-终止任务指定的时间"></a>休眠-终止任务指定的时间</h2><ul>
+<li>sleep()方法</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SleepingTask.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SleepingTask.java</a></li>
+<li>sleep()调用可以抛出InterruptedException异常，而异常不能跨线程传播会main(), 因此，必须在本次处理所有任务内部的异常</li>
+</ul>
+<h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><ul>
+<li>线程优先级将现成的重要性传递给调度器</li>
+<li>getPriority() 读取现有线程的优先级</li>
+<li>优先级在run()开头部分设定，在构造器中设置他们不会有用处，因为Executor没有执行任务</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SimplePriorities.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SimplePriorities.java</a></li>
+<li>JDK有10个优先级，与操作系统映射混乱，通常使用MAX_PRIORITY, NORM_PRIORTY, MIN_PRIORITY三种级别</li>
+</ul>
+<h2 id="让步"><a href="#让步" class="headerlink" title="让步"></a>让步</h2><ul>
+<li>Thread.yield()<ul>
+<li>建议具有相同优先级的其他线程可以运行</li>
+<li>重要的控制不能依赖于yield()</li>
+</ul>
+</li>
+</ul>
+<h2 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h2><ul>
+<li>当非后台线程结束，JVM会立即关闭所有后台线程</li>
+<li>必须在线程启动前调用setDaemon()方法，才能设置为后台线程</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SimpleDaemons.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SimpleDaemons.java</a></li>
+<li>Daemon线程派生的子线程也是后台线程<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Daemons.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Daemons.java</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="从Thread继承-替换-实现Runnable接口"><a href="#从Thread继承-替换-实现Runnable接口" class="headerlink" title="从Thread继承 替换 实现Runnable接口"></a>从Thread继承 替换 实现Runnable接口</h2><ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SimpleThread.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SimpleThread.java</a></li>
+<li>自管理的Runnable: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SelfManaged.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SelfManaged.java</a><ul>
+<li>在构造器中启动线程可能存在问题，因为另一个任务可能会在构造器结束之前开始执行，意味着该任务能够访问到处于不稳定状态的对象</li>
+</ul>
+</li>
+<li>使用内部类将线程代码隐藏：<a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ThreadVariations.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ThreadVariations.java</a></li>
+</ul>
+<h2 id="任务与线程的区别"><a href="#任务与线程的区别" class="headerlink" title="任务与线程的区别"></a>任务与线程的区别</h2><ul>
+<li>Thread类自身不执行任何操作，它只是驱动赋予它的任务</li>
+</ul>
+<h2 id="加入一个线程"><a href="#加入一个线程" class="headerlink" title="加入一个线程"></a>加入一个线程</h2><ul>
+<li><p>join()方法：等待一段时间直到第二个线程结束才继续执行</p>
+<ul>
+<li><p>线程A, B都在运行，执行A类中执行B.join，A中执行终止等到B执行完再继续执行</p>
+<pre><code>A{
+    B.join();
+}
+B{
+
+}
+</code></pre></li>
+</ul>
+</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Joining.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Joining.java</a></li>
+<li>isInterrupted()表示线程是否中断<ul>
+<li>当异常被捕获时将清理线程的这个标志，因此在异常捕获时调用isInterrupted()总是返回false</li>
+</ul>
+</li>
+</ul>
+<h2 id="响应用户界面上的线程应用"><a href="#响应用户界面上的线程应用" class="headerlink" title="响应用户界面上的线程应用"></a>响应用户界面上的线程应用</h2><ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ResponsiveUI.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ResponsiveUI.java</a></li>
+</ul>
+<h2 id="线程组"><a href="#线程组" class="headerlink" title="线程组"></a>线程组</h2><ul>
+<li>最好把线程组看成时一次不成功的尝试，你只要忽略它就好了</li>
+</ul>
+<h2 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h2><ul>
+<li>通过Executor捕获逃出任务的run()方法的异常</li>
+<li>异常抛出的情况： <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ExceptionThread.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ExceptionThread.java</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要并发"><span class="toc-text">为什么需要并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景1：更快的执行速度"><span class="toc-text">场景1：更快的执行速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景2：改进代码设计"><span class="toc-text">场景2：改进代码设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程驱动任务"><span class="toc-text">线程驱动任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述一个任务"><span class="toc-text">描述一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将任务附着到线程上"><span class="toc-text">将任务附着到线程上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行器-Executor-管理Thread对象-——-线程池"><span class="toc-text">执行器(Executor)管理Thread对象 —— 线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从任务中产生返回值"><span class="toc-text">从任务中产生返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#休眠-终止任务指定的时间"><span class="toc-text">休眠-终止任务指定的时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程优先级"><span class="toc-text">线程优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让步"><span class="toc-text">让步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台线程"><span class="toc-text">后台线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从Thread继承-替换-实现Runnable接口"><span class="toc-text">从Thread继承 替换 实现Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务与线程的区别"><span class="toc-text">任务与线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入一个线程"><span class="toc-text">加入一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应用户界面上的线程应用"><span class="toc-text">响应用户界面上的线程应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程组"><span class="toc-text">线程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获异常"><span class="toc-text">捕获异常</span></a></li></ol></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
