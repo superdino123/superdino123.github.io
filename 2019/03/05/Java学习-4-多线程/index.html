@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-05</span>
-            <span class="time">18:44:37</span>
+            <span class="time">16:54:13</span>
           </span>
           
           <!--  Categories  -->
@@ -272,37 +272,53 @@ B{
 </ul>
 </li>
 </ul>
-<h1 id="资源的共享使用"><a href="#资源的共享使用" class="headerlink" title="资源的共享使用"></a>资源的共享使用</h1><ul>
+<h1 id="任务之间的干涉-资源的共享使用"><a href="#任务之间的干涉-资源的共享使用" class="headerlink" title="任务之间的干涉-资源的共享使用"></a>任务之间的干涉-资源的共享使用</h1><ul>
 <li>Java中递增不是原子性操作，如果不保护任务，递增也是不安全的<ul>
 <li>case: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/EvenGenerator.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/EvenGenerator.java</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="关键字-synchronized"><a href="#关键字-synchronized" class="headerlink" title="关键字 synchronized"></a>关键字 synchronized</h2><pre><code>    synchronized void f() {}
-- 如何防止资源冲突
-    1. 当任务要执行被synchronized关键字保护的代码片段时
-    2. 检查锁是否可用
-    3. 获取锁
-    4. 执行代码
-    5. 释放锁
-- 共享资源
-    - 是以对象形式存在的内存片段
-    - 控制对共享资源的访问，要先把它包装进一个对象
-    - 把所有要访问这个资源的方法标记为synchronized
-- 一个任务可以多次获得对象的锁
-    - 当对象调用同步方法时，方法中调用了第二个同步方法, 对象就会增加被加锁的次数，当离开一个同步方法时，对象会减少被加锁次数
-- 每个访问临界资源的方法都必须被同步，否则就不会正确工作
-    - https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/AtomicityTest.java
-- case: https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SynchronizedEvenGenerator.java
-</code></pre><h2 id="Lock对象-与-关键字synchronized"><a href="#Lock对象-与-关键字synchronized" class="headerlink" title="Lock对象 与 关键字synchronized"></a>Lock对象 与 关键字synchronized</h2><pre><code>- 缺点
-    - Lock对象必须被显式地创建，锁定，释放
-    - Lock使用过程中，代码缺乏优雅性
-- 优点
-    - 处理某些特定问题更加灵活
-    - 赋予更细粒度的控制力
-- 通常都是用关键字synchronized
-- 在处理特殊问题，关键字无法满足需求时，用Lock对象，如不能获取锁，获取锁失败，尝试获取锁一段时间然后释放
-</code></pre><h2 id="原子性与易变形"><a href="#原子性与易变形" class="headerlink" title="原子性与易变形"></a>原子性与易变形</h2><ul>
+<h2 id="关键字-synchronized"><a href="#关键字-synchronized" class="headerlink" title="关键字 synchronized"></a>关键字 synchronized</h2><pre><code>synchronized void f() {}
+</code></pre><ul>
+<li>如何防止资源冲突<ol>
+<li>当任务要执行被synchronized关键字保护的代码片段时</li>
+<li>检查锁是否可用</li>
+<li>获取锁</li>
+<li>执行代码</li>
+<li>释放锁</li>
+</ol>
+</li>
+<li>共享资源<ul>
+<li>是以对象形式存在的内存片段</li>
+<li>控制对共享资源的访问，要先把它包装进一个对象</li>
+<li>把所有要访问这个资源的方法标记为synchronized</li>
+</ul>
+</li>
+<li>一个任务可以多次获得对象的锁<ul>
+<li>当对象调用同步方法时，方法中调用了第二个同步方法, 对象就会增加被加锁的次数，当离开一个同步方法时，对象会减少被加锁次数</li>
+</ul>
+</li>
+<li>每个访问临界资源的方法都必须被同步，否则就不会正确工作<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/AtomicityTest.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/AtomicityTest.java</a></li>
+</ul>
+</li>
+<li>case: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SynchronizedEvenGenerator.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SynchronizedEvenGenerator.java</a></li>
+</ul>
+<h2 id="Lock对象-与-关键字synchronized"><a href="#Lock对象-与-关键字synchronized" class="headerlink" title="Lock对象 与 关键字synchronized"></a>Lock对象 与 关键字synchronized</h2><ul>
+<li>缺点<ul>
+<li>Lock对象必须被显式地创建，锁定，释放</li>
+<li>Lock使用过程中，代码缺乏优雅性</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>处理某些特定问题更加灵活</li>
+<li>赋予更细粒度的控制力</li>
+</ul>
+</li>
+<li>通常都是用关键字synchronized</li>
+<li>在处理特殊问题，关键字无法满足需求时，用Lock对象，如不能获取锁，获取锁失败，尝试获取锁一段时间然后释放</li>
+</ul>
+<h2 id="原子性与易变形"><a href="#原子性与易变形" class="headerlink" title="原子性与易变形"></a>原子性与易变形</h2><ul>
 <li>原子性 —— volatile 关键字<ul>
 <li>使编译器不会执行任何移除读取和写入操作的优化</li>
 <li>确保应用的可视性，如果一个域声明为volatile，那么只要对这个域进行写操作，所有读操作都可以看到这个修改</li>
@@ -334,6 +350,117 @@ B{
 
 }
 </code></pre></li>
+<li>通过lock创建临界区<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ExplicitCriticalSection.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ExplicitCriticalSection.java</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="对于非线程安全的类，如何在线程环境下使用"><a href="#对于非线程安全的类，如何在线程环境下使用" class="headerlink" title="对于非线程安全的类，如何在线程环境下使用"></a>对于非线程安全的类，如何在线程环境下使用</h2><ul>
+<li>通过线程安全类或方法持有并封装非线程安全类的访问入口<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CriticalSection.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CriticalSection.java</a></li>
+</ul>
+</li>
+<li>模板方法模式：一些功能在基类中实现，并且其中一个或多个抽象方法在派生类中定义</li>
+<li>synchronized关键字不属于方法特征签名的组成部分，可以在父类方法中没有，在子类覆盖方法中添加</li>
+</ul>
+<h2 id="如何在其他对象上同步"><a href="#如何在其他对象上同步" class="headerlink" title="如何在其他对象上同步"></a>如何在其他对象上同步</h2><ul>
+<li><p>同步当前对象</p>
+<pre><code>synchronized(this)
+</code></pre><ul>
+<li>该对象的其他synchronized方法和临界区不可以被调用</li>
+</ul>
+</li>
+<li>同步其他对象<ul>
+<li>必须确保所有相关的任务都是在同一个对象上同步<br>  <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SyncObject.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/SyncObject.java</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="通过-线程本地存储-根除对变量的共享"><a href="#通过-线程本地存储-根除对变量的共享" class="headerlink" title="通过 线程本地存储 根除对变量的共享"></a>通过 线程本地存储 根除对变量的共享</h2><ul>
+<li>每一个线程保存一个变量副本</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ThreadLocalVariableHolder.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ThreadLocalVariableHolder.java</a></li>
+</ul>
+<h1 id="如何终结任务"><a href="#如何终结任务" class="headerlink" title="如何终结任务"></a>如何终结任务</h1><ul>
+<li>shutdown()<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/OrnamentalGarden.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/OrnamentalGarden.java</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><ul>
+<li>新建<ul>
+<li>已分配必需的资源，完成初始化，有资格获得CPU的时间</li>
+</ul>
+</li>
+<li>就绪<ul>
+<li>只要调度器分配时间片给线程，线程就可以运行</li>
+</ul>
+</li>
+<li>阻塞<ul>
+<li>某个条件阻止线程运行</li>
+<li>调度器会忽略该线程，不分配CPU时间，直到其进入就绪状态</li>
+</ul>
+</li>
+<li>死亡<ul>
+<li>不会得到CPU时间</li>
+<li>不可调度</li>
+<li>死亡方式通常通过run()方法返回</li>
+</ul>
+</li>
+<li>任务为什么会进入阻塞状态<ul>
+<li>调用sleep()</li>
+<li>调用wait()将线程挂起，直到得到notify()或notifyAll()消息，线程才会进入就绪状态</li>
+<li>等待IO</li>
+<li>调用同步已被所锁住的对象</li>
+</ul>
+</li>
+<li>如何终止阻塞状态的任务？<ul>
+<li>强制这个任务跳出阻塞状态</li>
+<li>可以中断sleep()导致的阻塞任务，不能中断试图获取synchronized锁或者等待I/O的阻塞任务<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Interrupting.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Interrupting.java</a></li>
+</ul>
+</li>
+<li>如何关闭等待I/O的阻塞任务？<ul>
+<li>关闭任务在其上发生阻塞的底层资源</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CloseResource.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CloseResource.java</a></li>
+</ul>
+</li>
+<li>如何关闭等待同步锁的阻塞任务？<ul>
+<li>在ReentrantLock上阻塞的任务具备可以中断的能力</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Interrupting2.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Interrupting2.java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何检查中断</p>
+<pre><code>Thread.interrupted()
+</code></pre><ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/InterruptingIdiom.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/InterruptingIdiom.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="任务之间的协作"><a href="#任务之间的协作" class="headerlink" title="任务之间的协作"></a>任务之间的协作</h1><ul>
+<li>wait()挂起 与 notify()唤醒<ul>
+<li>wait()提供了一种在任务之间对活动同步的方式</li>
+</ul>
+</li>
+<li>sleep()与wait()的区别<ul>
+<li>任务调用sleep()时，同步锁不会被释放，yield()也如此</li>
+<li>任务调用wait()时，线程执行被挂起，同步锁被释放</li>
+</ul>
+</li>
+<li>为什么wait()，notify()，notifyAll()方法是基类Object的一部分，而不是Thread的一部分？<ul>
+<li>这些方法操作的锁是所有对象的一部分</li>
+</ul>
+</li>
+<li>只能在同步方法或同步控制块中调用wait(), notify(), notifyAll()<ul>
+<li>调用这些方法前必须拥有该对象的锁</li>
+<li>在需要获得的锁可用之前，挂起的线程不会被唤醒</li>
+</ul>
+</li>
+<li>notiflyAll()<ul>
+<li>因某个特定锁被调用时，只有等待这个锁的任务会被唤醒</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/NotifyVsNotifyAll.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/NotifyVsNotifyAll.java</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -342,7 +469,7 @@ B{
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要并发"><span class="toc-text">为什么需要并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景1：更快的执行速度"><span class="toc-text">场景1：更快的执行速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景2：改进代码设计"><span class="toc-text">场景2：改进代码设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程驱动任务"><span class="toc-text">线程驱动任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述一个任务"><span class="toc-text">描述一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将任务附着到线程上"><span class="toc-text">将任务附着到线程上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行器-Executor-管理Thread对象-——-线程池"><span class="toc-text">执行器(Executor)管理Thread对象 —— 线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从任务中产生返回值"><span class="toc-text">从任务中产生返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#休眠-终止任务指定的时间"><span class="toc-text">休眠-终止任务指定的时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程优先级"><span class="toc-text">线程优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让步"><span class="toc-text">让步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台线程"><span class="toc-text">后台线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread继承-替换-实现Runnable接口"><span class="toc-text">Thread继承 替换 实现Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务与线程的区别"><span class="toc-text">任务与线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入一个线程"><span class="toc-text">加入一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应用户界面上的线程应用"><span class="toc-text">响应用户界面上的线程应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程组"><span class="toc-text">线程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获异常"><span class="toc-text">捕获异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#资源的共享使用"><span class="toc-text">资源的共享使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字-synchronized"><span class="toc-text">关键字 synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lock对象-与-关键字synchronized"><span class="toc-text">Lock对象 与 关键字synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原子性与易变形"><span class="toc-text">原子性与易变形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是临界区"><span class="toc-text">什么是临界区</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要并发"><span class="toc-text">为什么需要并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景1：更快的执行速度"><span class="toc-text">场景1：更快的执行速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景2：改进代码设计"><span class="toc-text">场景2：改进代码设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程驱动任务"><span class="toc-text">线程驱动任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述一个任务"><span class="toc-text">描述一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将任务附着到线程上"><span class="toc-text">将任务附着到线程上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行器-Executor-管理Thread对象-——-线程池"><span class="toc-text">执行器(Executor)管理Thread对象 —— 线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从任务中产生返回值"><span class="toc-text">从任务中产生返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#休眠-终止任务指定的时间"><span class="toc-text">休眠-终止任务指定的时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程优先级"><span class="toc-text">线程优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让步"><span class="toc-text">让步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台线程"><span class="toc-text">后台线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread继承-替换-实现Runnable接口"><span class="toc-text">Thread继承 替换 实现Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务与线程的区别"><span class="toc-text">任务与线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入一个线程"><span class="toc-text">加入一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应用户界面上的线程应用"><span class="toc-text">响应用户界面上的线程应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程组"><span class="toc-text">线程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获异常"><span class="toc-text">捕获异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#任务之间的干涉-资源的共享使用"><span class="toc-text">任务之间的干涉-资源的共享使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字-synchronized"><span class="toc-text">关键字 synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lock对象-与-关键字synchronized"><span class="toc-text">Lock对象 与 关键字synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原子性与易变形"><span class="toc-text">原子性与易变形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是临界区"><span class="toc-text">什么是临界区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于非线程安全的类，如何在线程环境下使用"><span class="toc-text">对于非线程安全的类，如何在线程环境下使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在其他对象上同步"><span class="toc-text">如何在其他对象上同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-线程本地存储-根除对变量的共享"><span class="toc-text">通过 线程本地存储 根除对变量的共享</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何终结任务"><span class="toc-text">如何终结任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程状态"><span class="toc-text">线程状态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#任务之间的协作"><span class="toc-text">任务之间的协作</span></a></li></ol>
 	</div>
 </aside>
       </div>
