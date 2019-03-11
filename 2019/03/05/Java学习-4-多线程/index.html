@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-05</span>
-            <span class="time">13:14:02</span>
+            <span class="time">00:34:18</span>
           </span>
           
           <!--  Categories  -->
@@ -456,11 +456,65 @@ B{
 <li>在需要获得的锁可用之前，挂起的线程不会被唤醒</li>
 </ul>
 </li>
-<li>notiflyAll()<ul>
+<li><p>notiflyAll()</p>
+<ul>
 <li>因某个特定锁被调用时，只有等待这个锁的任务会被唤醒</li>
 <li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/NotifyVsNotifyAll.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/NotifyVsNotifyAll.java</a></li>
 </ul>
 </li>
+<li><p>生产者与消费者</p>
+<ul>
+<li>厨师与服务员<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Restaurant.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/Restaurant.java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Condition对象<ul>
+<li>await(), signal(), signalAll()</li>
+<li>使用互斥并允许任务挂起的基本类</li>
+<li>对lock()的调用必须紧跟一个try-finally子句，保证任何情况下都可以释放锁</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/WaxOMatic2.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/WaxOMatic2.java</a></li>
+</ul>
+</li>
+<li>生产者-消费者队列<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/TestBlockingQueues.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/TestBlockingQueues.java</a></li>
+</ul>
+</li>
+<li>吐司-黄油-果酱-吃 队列 BlockingQueue<ul>
+<li>同步由队列和系统的设计隐式地管理</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ToastOMatic.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/ToastOMatic.java</a></li>
+</ul>
+</li>
+<li>任务使用管道进行输入/输出<ul>
+<li>管道：生产者-消费者的变体</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/PipedIO.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/PipedIO.java</a></li>
+<li>BlockingQueue使用起来更健壮而容易</li>
+<li>PipedReader()是可中断的</li>
+</ul>
+</li>
+</ul>
+<h1 id="死锁的发生与预防思路"><a href="#死锁的发生与预防思路" class="headerlink" title="死锁的发生与预防思路"></a>死锁的发生与预防思路</h1><ul>
+<li>死锁的发生条件<ul>
+<li>互斥条件，任务使用的资源至少有一个是不能共享的</li>
+<li>至少有一个任务必须持有一个资源且正在等待获取一个当前被别的任务持有的资源</li>
+<li>资源不能被任务抢占，任务必须把资源释放当作普通事件</li>
+<li>必须有循环等待</li>
+</ul>
+</li>
+<li>死锁case(科学家思考-吃饭问题):<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/DeadlockingDiningPhilosophers.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/DeadlockingDiningPhilosophers.java</a></li>
+</ul>
+</li>
+<li>如何避免死锁<ul>
+<li>破坏掉发生条件的其中之一即可</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/FixedDiningPhilosophers.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/FixedDiningPhilosophers.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="新类库中的构件"><a href="#新类库中的构件" class="headerlink" title="新类库中的构件"></a>新类库中的构件</h1><h2 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h2><ul>
+<li>被用来同步一个或多个任务，强制它们等待由其他任务执行的一组操作完成</li>
+<li>case: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CountDownLatchDemo.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/concurrency/CountDownLatchDemo.java</a></li>
 </ul>
 
         </div>
@@ -469,7 +523,7 @@ B{
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要并发"><span class="toc-text">为什么需要并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景1：更快的执行速度"><span class="toc-text">场景1：更快的执行速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景2：改进代码设计"><span class="toc-text">场景2：改进代码设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程驱动任务"><span class="toc-text">线程驱动任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述一个任务"><span class="toc-text">描述一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将任务附着到线程上"><span class="toc-text">将任务附着到线程上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行器-Executor-管理Thread对象-——-线程池"><span class="toc-text">执行器(Executor)管理Thread对象 —— 线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从任务中产生返回值"><span class="toc-text">从任务中产生返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#休眠-终止任务指定的时间"><span class="toc-text">休眠-终止任务指定的时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程优先级"><span class="toc-text">线程优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让步"><span class="toc-text">让步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台线程"><span class="toc-text">后台线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread继承-替换-实现Runnable接口"><span class="toc-text">Thread继承 替换 实现Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务与线程的区别"><span class="toc-text">任务与线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入一个线程"><span class="toc-text">加入一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应用户界面上的线程应用"><span class="toc-text">响应用户界面上的线程应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程组"><span class="toc-text">线程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获异常"><span class="toc-text">捕获异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#任务之间的干涉-资源的共享使用"><span class="toc-text">任务之间的干涉-资源的共享使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字-synchronized"><span class="toc-text">关键字 synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lock对象-与-关键字synchronized"><span class="toc-text">Lock对象 与 关键字synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原子性与易变形"><span class="toc-text">原子性与易变形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是临界区"><span class="toc-text">什么是临界区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于非线程安全的类，如何在线程环境下使用"><span class="toc-text">对于非线程安全的类，如何在线程环境下使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在其他对象上同步"><span class="toc-text">如何在其他对象上同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-线程本地存储-根除对变量的共享"><span class="toc-text">通过 线程本地存储 根除对变量的共享</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何终结任务"><span class="toc-text">如何终结任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程状态"><span class="toc-text">线程状态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#任务之间的协作"><span class="toc-text">任务之间的协作</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要并发"><span class="toc-text">为什么需要并发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景1：更快的执行速度"><span class="toc-text">场景1：更快的执行速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景2：改进代码设计"><span class="toc-text">场景2：改进代码设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程驱动任务"><span class="toc-text">线程驱动任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述一个任务"><span class="toc-text">描述一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将任务附着到线程上"><span class="toc-text">将任务附着到线程上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行器-Executor-管理Thread对象-——-线程池"><span class="toc-text">执行器(Executor)管理Thread对象 —— 线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从任务中产生返回值"><span class="toc-text">从任务中产生返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#休眠-终止任务指定的时间"><span class="toc-text">休眠-终止任务指定的时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程优先级"><span class="toc-text">线程优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#让步"><span class="toc-text">让步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台线程"><span class="toc-text">后台线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread继承-替换-实现Runnable接口"><span class="toc-text">Thread继承 替换 实现Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务与线程的区别"><span class="toc-text">任务与线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入一个线程"><span class="toc-text">加入一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应用户界面上的线程应用"><span class="toc-text">响应用户界面上的线程应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程组"><span class="toc-text">线程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获异常"><span class="toc-text">捕获异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#任务之间的干涉-资源的共享使用"><span class="toc-text">任务之间的干涉-资源的共享使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字-synchronized"><span class="toc-text">关键字 synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lock对象-与-关键字synchronized"><span class="toc-text">Lock对象 与 关键字synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原子性与易变形"><span class="toc-text">原子性与易变形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是临界区"><span class="toc-text">什么是临界区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于非线程安全的类，如何在线程环境下使用"><span class="toc-text">对于非线程安全的类，如何在线程环境下使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在其他对象上同步"><span class="toc-text">如何在其他对象上同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-线程本地存储-根除对变量的共享"><span class="toc-text">通过 线程本地存储 根除对变量的共享</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何终结任务"><span class="toc-text">如何终结任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程状态"><span class="toc-text">线程状态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#任务之间的协作"><span class="toc-text">任务之间的协作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#死锁的发生与预防思路"><span class="toc-text">死锁的发生与预防思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新类库中的构件"><span class="toc-text">新类库中的构件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CountDownLatch"><span class="toc-text">CountDownLatch</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
