@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Hark Zheng">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="设计模式">
+  <meta property="og:title" content="Spring初识">
   <meta property="og:description" content="软件 技术 学习 分享">
   <meta property="og:site_name" content="Hark的博客">
   <meta property="og:type" content="article">
@@ -45,7 +45,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">设计模式</p>
+          <p class="title">Spring初识</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -101,23 +101,61 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-03-01</span>
+            <span class="date">2019-03-14</span>
             <span class="time">01:59:34</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Spring/">Spring</a>
+</span>
           
         </div>
         <!-- Tags -->
         
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/JavaEE学习/">#JavaEE学习</a> <a class="tag" href="/tags/Spring/">#Spring</a>
+
+
+          </div>
+        
         <!-- Post Main Content -->
         <div class="post-content">
-          
+          <p>Spring学习</p>
+<a id="more"></a>
+<h1 id="Ioc"><a href="#Ioc" class="headerlink" title="Ioc"></a>Ioc</h1><ul>
+<li>控制反转：一种描述并通过第三方去产生或获取特定对象的方式</li>
+<li>实现方式：Dependency Injection 依赖注入</li>
+<li>目的：降低对象之间的耦合</li>
+</ul>
+<h2 id="BeanFactory-amp-amp-ApplicationContext-接口"><a href="#BeanFactory-amp-amp-ApplicationContext-接口" class="headerlink" title="BeanFactory &amp;&amp; ApplicationContext 接口"></a>BeanFactory &amp;&amp; ApplicationContext 接口</h2><ul>
+<li>BeanFactory 是 Spring IoC容器所定义的最底层接口</li>
+<li>ApplicationContext 继承 BeanFactory，绝大多数场景应用该接口</li>
+<li><a href="https://github.com/superdino123/JavaWebTest/blob/master/src/SpringTest/IoCTest/BeanFactory.java" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/blob/master/src/SpringTest/IoCTest/BeanFactory.java</a></li>
+</ul>
+<h2 id="Bean的定义与初始化"><a href="#Bean的定义与初始化" class="headerlink" title="Bean的定义与初始化"></a>Bean的定义与初始化</h2><ul>
+<li>定义<ul>
+<li>Resource定位，根据开发者的配置(注解 || XML)进行资源定位</li>
+<li>BeanDefinition的载入，将定位到的信息保存早BeanDefinition中</li>
+<li>BeanDefinition的注册，将BeanDefinition信息发布到IoC容器中</li>
+</ul>
+</li>
+<li>初始化</li>
+</ul>
+<h2 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h2><ul>
+<li>case: <a href="https://github.com/superdino123/JavaWebTest/blob/master/src/SpringTest/JuiceMaker2Test.java" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/blob/master/src/SpringTest/JuiceMaker2Test.java</a></li>
+</ul>
+
         </div>
       </div>
       <div class="col-lg-4  col-md-2">
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
