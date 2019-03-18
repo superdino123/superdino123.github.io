@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-14</span>
-            <span class="time">01:59:34</span>
+            <span class="time">01:30:02</span>
           </span>
           
           <!--  Categories  -->
@@ -148,14 +148,98 @@
 <h2 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h2><ul>
 <li>case: <a href="https://github.com/superdino123/JavaWebTest/blob/master/src/SpringTest/JuiceMaker2Test.java" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/blob/master/src/SpringTest/JuiceMaker2Test.java</a></li>
 </ul>
+<h1 id="装配Spring-Bean"><a href="#装配Spring-Bean" class="headerlink" title="装配Spring Bean"></a>装配Spring Bean</h1><ul>
+<li>实现IOC容器的方式<ul>
+<li>依赖查找</li>
+<li>依赖注入</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何将对象注入到Ioc容器中"><a href="#如何将对象注入到Ioc容器中" class="headerlink" title="如何将对象注入到Ioc容器中"></a>如何将对象注入到Ioc容器中</h2><ul>
+<li><p>构造器注入</p>
+<ul>
+<li>原理<ul>
+<li>采用反射的方式，通过使用构造方法来完成注入</li>
+</ul>
+</li>
+<li><p>配置</p>
+<pre><code>&lt;bean&gt;
+    &lt;constructor-arg index=&quot;&quot; value=&quot;&quot;&gt;
+    //constructor-arg : 定义类构造方法的参数
+    //index : 用于定义参数的位置
+    //value : 用于设置值
+</code></pre></li>
+</ul>
+</li>
+<li><p>setter注入</p>
+<ul>
+<li><p>配置</p>
+<pre><code>&lt;bean&gt;
+    &lt;property name=&quot;&quot; value=&quot;&quot;&gt;
+    //属性 属性名 属性值
+</code></pre></li>
+</ul>
+</li>
+<li><p>接口注入</p>
+<ul>
+<li><p>配置</p>
+<pre><code>&lt;bean id=&quot;&quot; class=&quot;org.springframework.jndi.JndiObjectFactoryBean&quot;&gt;
+    &lt;property name=&quot;jndiName&quot;&gt;
+        &lt;value&gt;java:comp/env/jdbc/ssm&lt;/value&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="Spring中如何配置JavaBean"><a href="#Spring中如何配置JavaBean" class="headerlink" title="Spring中如何配置JavaBean"></a>Spring中如何配置JavaBean</h2><ul>
+<li>配置方式比较<ul>
+<li>隐式Bean的发现机制和自动装配原则<ul>
+<li>优先使用，减少开发者的决定权，简单又不失灵活</li>
+</ul>
+</li>
+<li>在接口和类中实现配置<ul>
+<li>没有办法自动装配时，优先考虑Java接口和类中实现配置，避免XML配置泛滥</li>
+</ul>
+</li>
+<li>在XML中显示配置<ul>
+<li>当一个类需要多个实例</li>
+<li>当一个父类有多个子类，配置一个父类时</li>
+<li>当配置的类是第三方的类库时</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>XML配置</p>
+<ul>
+<li><p>模板</p>
+<pre><code>&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos; ?&gt;
+    &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd&quot;&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>            &lt;/beans&gt;
+- 装配简易值
 
+        &lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+            &lt;property name=&quot;&quot; value=&quot;&quot;&gt;
+- 装配自定义类
+
+        &lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+            &lt;property name=&quot;&quot; ref=&quot;&quot;&gt;
+- 装配集合
+    - https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml
+- 装配对象集合
+</code></pre>
         </div>
       </div>
       <div class="col-lg-4  col-md-2">
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装配Spring-Bean"><span class="toc-text">装配Spring Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何将对象注入到Ioc容器中"><span class="toc-text">如何将对象注入到Ioc容器中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中如何配置JavaBean"><span class="toc-text">Spring中如何配置JavaBean</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
