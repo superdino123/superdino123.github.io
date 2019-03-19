@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-14</span>
-            <span class="time">01:20:37</span>
+            <span class="time">01:29:05</span>
           </span>
           
           <!--  Categories  -->
@@ -190,8 +190,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Spring中如何配置JavaBean"><a href="#Spring中如何配置JavaBean" class="headerlink" title="Spring中如何配置JavaBean"></a>Spring中如何配置JavaBean</h2><ul>
-<li>配置方式比较<ul>
+<h2 id="Spring中如何配置JavaBean"><a href="#Spring中如何配置JavaBean" class="headerlink" title="Spring中如何配置JavaBean"></a>Spring中如何配置JavaBean</h2><h3 id="配置方式比较"><a href="#配置方式比较" class="headerlink" title="配置方式比较"></a>配置方式比较</h3><ul>
 <li>原则：约定优于配置</li>
 <li>隐式Bean的发现机制和自动装配原则<ul>
 <li>优先使用，减少开发者的决定权，简单又不失灵活</li>
@@ -208,40 +207,40 @@
 </ul>
 </li>
 </ul>
-</li>
-<li><p>XML配置</p>
-<ul>
+<h3 id="XML配置"><a href="#XML配置" class="headerlink" title="XML配置"></a>XML配置</h3><ul>
 <li><p>模板</p>
 <pre><code>&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos; ?&gt;
     &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
         xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd&quot;&gt;
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd&quot;&gt;    
+    &lt;/beans&gt;
 </code></pre></li>
+<li><p>装配简易值</p>
+<pre><code>&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+    &lt;property name=&quot;&quot; value=&quot;&quot;&gt;
+</code></pre></li>
+<li><p>装配自定义类</p>
+<pre><code>&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+    &lt;property name=&quot;&quot; ref=&quot;&quot;&gt;
+</code></pre></li>
+<li><p>装配集合</p>
+<ul>
+<li><a href="https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml</a></li>
+</ul>
+</li>
+<li><p>装配对象集合</p>
+<ul>
+<li><a href="https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml</a></li>
+</ul>
+</li>
+<li><p>命名空间装配</p>
+<ul>
+<li>个人觉得方式比较冗余</li>
 </ul>
 </li>
 </ul>
-<pre><code>            &lt;/beans&gt;
-
-- 装配简易值
-
-        &lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
-            &lt;property name=&quot;&quot; value=&quot;&quot;&gt;
-
-- 装配自定义类
-
-        &lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
-            &lt;property name=&quot;&quot; ref=&quot;&quot;&gt;
-
-- 装配集合
-    - https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml
-- 装配对象集合
-    - https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml
-
-- 命名空间装配
-    - 个人觉得方式比较冗余
-</code></pre><ul>
-<li>注解装配Bean<ul>
+<h3 id="注解装配Bean"><a href="#注解装配Bean" class="headerlink" title="注解装配Bean"></a>注解装配Bean</h3><ul>
 <li>组件扫描</li>
 <li>自动装配</li>
 <li>注解<ul>
@@ -284,7 +283,8 @@
 <li>优先使用该类注入</li>
 </ul>
 </li>
-<li>@Qualifier(“类的别名-Component中的命名”)</li>
+<li>@Qualifier(“类的别名-Component中的命名”)<ul>
+<li>按照名称查找</li>
 </ul>
 </li>
 </ul>
@@ -299,7 +299,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装配Spring-Bean"><span class="toc-text">装配Spring Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何将对象注入到Ioc容器中"><span class="toc-text">如何将对象注入到Ioc容器中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中如何配置JavaBean"><span class="toc-text">Spring中如何配置JavaBean</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装配Spring-Bean"><span class="toc-text">装配Spring Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何将对象注入到Ioc容器中"><span class="toc-text">如何将对象注入到Ioc容器中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中如何配置JavaBean"><span class="toc-text">Spring中如何配置JavaBean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置方式比较"><span class="toc-text">配置方式比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML配置"><span class="toc-text">XML配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注解装配Bean"><span class="toc-text">注解装配Bean</span></a></li></ol></li></ol></li></ol>
 	</div>
 </aside>
       </div>
