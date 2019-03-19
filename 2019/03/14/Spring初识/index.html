@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-14</span>
-            <span class="time">01:30:02</span>
+            <span class="time">01:20:37</span>
           </span>
           
           <!--  Categories  -->
@@ -192,6 +192,7 @@
 </ul>
 <h2 id="Spring中如何配置JavaBean"><a href="#Spring中如何配置JavaBean" class="headerlink" title="Spring中如何配置JavaBean"></a>Spring中如何配置JavaBean</h2><ul>
 <li>配置方式比较<ul>
+<li>原则：约定优于配置</li>
 <li>隐式Bean的发现机制和自动装配原则<ul>
 <li>优先使用，减少开发者的决定权，简单又不失灵活</li>
 </ul>
@@ -221,18 +222,77 @@
 </li>
 </ul>
 <pre><code>            &lt;/beans&gt;
+
 - 装配简易值
 
         &lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
             &lt;property name=&quot;&quot; value=&quot;&quot;&gt;
+
 - 装配自定义类
 
         &lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
             &lt;property name=&quot;&quot; ref=&quot;&quot;&gt;
+
 - 装配集合
     - https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml
 - 装配对象集合
-</code></pre>
+    - https://github.com/superdino123/JavaWebTest/blob/master/src/SpringBeanTest/spring-cfg.xml
+
+- 命名空间装配
+    - 个人觉得方式比较冗余
+</code></pre><ul>
+<li>注解装配Bean<ul>
+<li>组件扫描</li>
+<li>自动装配</li>
+<li>注解<ul>
+<li>code : <a href="https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest</a></li>
+<li>@Component(value=””)<ul>
+<li>注解类，将某个类扫描生成Bean实例</li>
+</ul>
+</li>
+<li>@Value(“”)<ul>
+<li>注解属性，给字段注入值</li>
+</ul>
+</li>
+<li>@ComponentScan<ul>
+<li>注解类，代表扫描当前类的包下的所有bean</li>
+<li>缺点<ul>
+<li>只能扫描所在包的Java类</li>
+</ul>
+</li>
+<li>自定义扫描包&amp;类<ul>
+<li>@ComponentScan(basePackageClasses={“xx.class”,”b.class”}, basePackages = {“pkg1name”, “pkg2name”})</li>
+</ul>
+</li>
+<li>不建议使用多个ComponentScan注解配置，容易产生重复的对象</li>
+</ul>
+</li>
+<li>@Autowired<ul>
+<li>注解属性 &amp;&amp; 注解方法</li>
+<li>表示在Spring IoC定位所有的Bean后，这个字段需要按类型注入</li>
+<li>默认寻找失败抛出异常</li>
+<li>忽略异常<ul>
+<li>@Autowired(required = false)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自动装配的歧义<ul>
+<li>同一个接口多个实现类，IoC不清楚用哪个注入，导致注入失败</li>
+<li>@Primary<ul>
+<li>注解类</li>
+<li>优先使用该类注入</li>
+</ul>
+</li>
+<li>@Qualifier(“类的别名-Component中的命名”)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
         </div>
       </div>
       <div class="col-lg-4  col-md-2">
