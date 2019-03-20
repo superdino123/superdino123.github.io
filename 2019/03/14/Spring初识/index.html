@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-14</span>
-            <span class="time">01:29:05</span>
+            <span class="time">10:39:41</span>
           </span>
           
           <!--  Categories  -->
@@ -241,10 +241,15 @@
 </li>
 </ul>
 <h3 id="注解装配Bean"><a href="#注解装配Bean" class="headerlink" title="注解装配Bean"></a>注解装配Bean</h3><ul>
+<li>方式<ul>
 <li>组件扫描</li>
 <li>自动装配</li>
-<li>注解<ul>
+</ul>
+</li>
+<li><p>注解</p>
+<ul>
 <li>code : <a href="https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest</a></li>
+<li>配置生成Bean<ul>
 <li>@Component(value=””)<ul>
 <li>注解类，将某个类扫描生成Bean实例</li>
 </ul>
@@ -253,6 +258,23 @@
 <li>注解属性，给字段注入值</li>
 </ul>
 </li>
+<li>@Bean<ul>
+<li>注解方法，将方法返回的对象作为Spring的bean</li>
+<li>注解初始化和销毁方法<ul>
+<li>@Bean(name=”beanName”, initMethod=”初始化方法名称”, destroyMethod=”销毁方法名称”)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>@Conditional<ul>
+<li>注解方法，条件化装配</li>
+<li><a href="https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest/ConditionDataSource.java" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest/ConditionDataSource.java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>扫描查询Bean</p>
+<ul>
 <li>@ComponentScan<ul>
 <li>注解类，代表扫描当前类的包下的所有bean</li>
 <li>缺点<ul>
@@ -266,7 +288,8 @@
 <li>不建议使用多个ComponentScan注解配置，容易产生重复的对象</li>
 </ul>
 </li>
-<li>@Autowired<ul>
+<li><p>@Autowired</p>
+<ul>
 <li>注解属性 &amp;&amp; 注解方法</li>
 <li>表示在Spring IoC定位所有的Bean后，这个字段需要按类型注入</li>
 <li>默认寻找失败抛出异常</li>
@@ -274,9 +297,15 @@
 <li>@Autowired(required = false)</li>
 </ul>
 </li>
+<li><p>带参数的构造方法</p>
+<pre><code>public RoleController2(@Autowired RoleService roleService){
+    this.roleService = roleService;
+}
+</code></pre></li>
 </ul>
 </li>
-<li>自动装配的歧义<ul>
+<li><p>自动装配的歧义</p>
+<ul>
 <li>同一个接口多个实现类，IoC不清楚用哪个注入，导致注入失败</li>
 <li>@Primary<ul>
 <li>注解类</li>
@@ -291,6 +320,96 @@
 </li>
 </ul>
 </li>
+<li>文件结构优化<ul>
+<li>@Import({a.class, b.class})<ul>
+<li>装配类，分散配置文件</li>
+<li>XML方式<ul>
+<li><import resource="spring-datasource.xml"></import></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>区分环境</p>
+<ul>
+<li><p>@Profile</p>
+<ul>
+<li>注解类&amp;方法</li>
+<li><p>XML方式</p>
+<pre><code>//1.beans中所有bean都在该profile中
+&lt;beans profile=&quot;&quot;&gt;
+//2.一个beans中多个profile
+&lt;beans&gt;
+    &lt;beans profile=&quot;&quot;&gt;//bean//&lt;/beans&gt;
+    &lt;beans profile=&quot;&quot;&gt;//bean//&lt;/beans&gt;
+&lt;/beans&gt;
+</code></pre></li>
+<li>启动方式(配置Profile的实例不会被加载到IoC容器中)<ul>
+<li>@ActiveProfiles(“profileName)</li>
+</ul>
+</li>
+<li>配置JVM参数启动Profile<ul>
+<li>JAVA_OPTS=”-Dspring.profiles.active=test”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h2><ul>
+<li>Spring IoC容器会对Bean创建一个实例</li>
+<li>方式<ul>
+<li>单例<ul>
+<li>默认选项，只为Bean生成一个实例</li>
+</ul>
+</li>
+<li>原型<ul>
+<li>每次注入都会创建一个实例</li>
+</ul>
+</li>
+<li>会话<ul>
+<li>会话过程中之创建一个实例</li>
+</ul>
+</li>
+<li>请求<ul>
+<li>一次请求创建一个实例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注解<ul>
+<li>原型：@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</li>
+</ul>
+</li>
+<li>case : <a href="https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest/BeanValueArea.java" target="_blank" rel="noopener">https://github.com/superdino123/JavaWebTest/tree/master/src/SpringBeanNoteTest/BeanValueArea.java</a></li>
+</ul>
+<h2 id="Spring-EL注入"><a href="#Spring-EL注入" class="headerlink" title="Spring EL注入"></a>Spring EL注入</h2><ul>
+<li>包含功能<ul>
+<li>使用Bean的id引用Bean</li>
+<li>调用指定对象的方法和访问对象的属性</li>
+<li>进行运算</li>
+<li>提供正则表达式进行匹配</li>
+<li>集合配置</li>
+</ul>
+</li>
+<li>类库<ul>
+<li>ExpressionParaser接口<ul>
+<li>TemplateAwareExpressionParser抽象类<ul>
+<li>InternalSpelExpressionParser</li>
+<li>SpelExpressionParser<ul>
+<li>SpringEL 实现类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -299,7 +418,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装配Spring-Bean"><span class="toc-text">装配Spring Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何将对象注入到Ioc容器中"><span class="toc-text">如何将对象注入到Ioc容器中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中如何配置JavaBean"><span class="toc-text">Spring中如何配置JavaBean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置方式比较"><span class="toc-text">配置方式比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML配置"><span class="toc-text">XML配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注解装配Bean"><span class="toc-text">注解装配Bean</span></a></li></ol></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ioc"><span class="toc-text">Ioc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeanFactory-amp-amp-ApplicationContext-接口"><span class="toc-text">BeanFactory &amp;&amp; ApplicationContext 接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的定义与初始化"><span class="toc-text">Bean的定义与初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Bean的生命周期"><span class="toc-text">Spring Bean的生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装配Spring-Bean"><span class="toc-text">装配Spring Bean</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何将对象注入到Ioc容器中"><span class="toc-text">如何将对象注入到Ioc容器中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中如何配置JavaBean"><span class="toc-text">Spring中如何配置JavaBean</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置方式比较"><span class="toc-text">配置方式比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML配置"><span class="toc-text">XML配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注解装配Bean"><span class="toc-text">注解装配Bean</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean的作用域"><span class="toc-text">Bean的作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-EL注入"><span class="toc-text">Spring EL注入</span></a></li></ol></li></ol>
 	</div>
 </aside>
       </div>
