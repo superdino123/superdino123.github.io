@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Hark Zheng">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Java学习-5-IO">
+  <meta property="og:description" content="软件 技术 学习 分享">
+  <meta property="og:site_name" content="Hark的博客">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://superdino123.github.io.git">
+  
+    <link rel="alternate" href="/atom.xml" title="Hark的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Hark的博客</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+
+  <body>
+
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Java学习-5-IO</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-7 col-lg-offset-1 col-md-9 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Hark Zheng</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-03-26</span>
+            <span class="time">18:29:17</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Java基础/">Java基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Java/">#Java</a> <a class="tag" href="/tags/IO/">#IO</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <ul>
+<li>IO的挑战<ul>
+<li>存在各种I/O源端和想要与之通信的接收端(文件, 控制台, 网络链接)</li>
+<li>多种通信方式(顺序, 随机存取, 缓冲, 二进制, 按字符, 按行, 按字)</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><ul>
+<li>查看<ul>
+<li>目录列表器: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/DirList.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/DirList.java</a></li>
+<li>目录工具: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Directory.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Directory.java</a></li>
+</ul>
+</li>
+<li>检查&amp;创建<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/MakeDirectories.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/MakeDirectories.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h1><ul>
+<li>Java1.0<ul>
+<li>输入相关所有类都从InputStream继承</li>
+<li>输出相关所有类都从OutputStream继承</li>
+<li>通常不直接使用InputStream，OutputStream类，而使用他们的装饰类FilterInputStream, FilterOutputStream</li>
+</ul>
+</li>
+<li>Java1.1<ul>
+<li>添加Reader 和 Writer类 提供兼容Unicode与面向字符的I/O功能</li>
+<li>InputStream&amp;OutptuStream面向字节形式的I/O仍具有不可替代性</li>
+<li>可通过装饰器类InputStreamReader / OutputStreamWriter 将 InputStream/OutputStream转换为 Reader / Writer</li>
+<li>RandomAccessFile 可搜寻文件内容，直接继承于Object</li>
+</ul>
+</li>
+</ul>
+<h1 id="I-O流的典型使用方式"><a href="#I-O流的典型使用方式" class="headerlink" title="I/O流的典型使用方式"></a>I/O流的典型使用方式</h1><ul>
+<li>缓冲输入文件: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/BufferedInputFile.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/BufferedInputFile.java</a></li>
+<li>从内存输入: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/MemoryInput.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/MemoryInput.java</a></li>
+<li>格式化的内存输入<ul>
+<li>读取格式化数据，使用DataInputStream</li>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/FormattedMemoryInput.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/FormattedMemoryInput.java</a></li>
+</ul>
+</li>
+<li>基本文件输出<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/BasicFileOutput.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/BasicFileOutput.java</a></li>
+</ul>
+</li>
+<li>数据的存储与恢复<ul>
+<li>使用DataOutputStram写入数据，使用DataInputStream可以准确地读取数据</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/StoringAndRecoveringData.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/StoringAndRecoveringData.java</a></li>
+</ul>
+</li>
+<li>读写随机访问文件<ul>
+<li>使用RandomAccessFile</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/UsingRandomAccessFile.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/UsingRandomAccessFile.java</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="col-lg-4  col-md-2">
+        <aside id="article-toc" role="navigation" class="fixed">
+	<div id="article-toc-inner">
+		<i style="padding:0 0 0 10px">目录</i>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出"><span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O流的典型使用方式"><span class="toc-text">I/O流的典型使用方式</span></a></li></ol>
+	</div>
+</aside>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        </p><p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+
