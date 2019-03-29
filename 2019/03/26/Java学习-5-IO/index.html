@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-26</span>
-            <span class="time">18:29:17</span>
+            <span class="time">09:23:01</span>
           </span>
           
           <!--  Categories  -->
@@ -180,6 +180,182 @@
 <li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/UsingRandomAccessFile.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/UsingRandomAccessFile.java</a></li>
 </ul>
 </li>
+<li>读取二进制文件<ul>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/BinaryFile.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/BinaryFile.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="标准I-O"><a href="#标准I-O" class="headerlink" title="标准I/O"></a>标准I/O</h1><ul>
+<li>意义: 把程序串联起来，一个程序的标准输出可以成为另一个程序的标准输入</li>
+<li>System.in<ul>
+<li>一个没有被包装过的未经加工的InputStream</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Echo.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Echo.java</a></li>
+</ul>
+</li>
+<li>System.out<ul>
+<li>事先被包装成了PrintStream</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ChangeSystemOut.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ChangeSystemOut.java</a></li>
+</ul>
+</li>
+<li>System.err<ul>
+<li>事先被包装成了PrintStream</li>
+</ul>
+</li>
+<li>输出重定向<ul>
+<li>System.setIn(InputStream)</li>
+<li>System.setOut(PrintStream)</li>
+<li>System.setErr(PrintStream)</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Redirecting.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Redirecting.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="新I-O"><a href="#新I-O" class="headerlink" title="新I/O"></a>新I/O</h1><ul>
+<li><p>目的: 提高速度</p>
+<ul>
+<li>速度提高的原因<ul>
+<li>使用的结构接近于操作系统执行I/O的方式 通道和缓冲器</li>
+<li>程序只与缓冲器做交互，通道只与缓冲器做交互</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>JDK1.4</p>
+<ul>
+<li>修改旧I/O类库FileInputStream, FileOutputStream, RandomAccessFile</li>
+</ul>
+</li>
+<li><p>读写通道</p>
+<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/GetChannel.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/GetChannel.java</a></li>
+<li>复制文件: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ChannelCopy.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ChannelCopy.java</a></li>
+</ul>
+</li>
+<li><p>通道与通道直接相连</p>
+<ul>
+<li>transferTo()  transferFrom()</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/TransferTo.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/TransferTo.java</a></li>
+</ul>
+</li>
+<li><p>数据转换</p>
+<ul>
+<li>ByteBuffer缓冲器容纳的是普通的字节, 为了把它们转换成字符<ul>
+<li>要么在输入它们的时候对其进行编码</li>
+<li>要么在将其从缓冲器输出时对它们进行解码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>获取基本类型<ul>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/GetData.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/GetData.java</a></li>
+</ul>
+</li>
+<li>视图缓冲器<ul>
+<li>通过特定的基本数据类型的视窗查看其底层的ByteBuffer</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ViewBuffers.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ViewBuffers.java</a></li>
+</ul>
+</li>
+<li>字节存放次序<ul>
+<li>ByteOrder.BIG_ENDIAN 高位优先</li>
+<li>ByteOrder.LITTLE_ENDIAN 低位优先</li>
+<li>code: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Endians.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Endians.java</a></li>
+</ul>
+</li>
+<li>缓冲器的细节<ul>
+<li>Buffer由数据和可以高效访问和操纵这些数据的四个索引组成</li>
+<li>索引<ul>
+<li>mark 标记</li>
+<li>position 位置</li>
+<li>limit 界限</li>
+<li>capacity 容量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>为什么需要内存映射文件？</p>
+<ul>
+<li>用到的类 : MappedByteBuffer</li>
+<li>文件过大，可能超过操作系统允许一次载入内存的空间, 只将一部分文件放入内存，其他部分被交换出去，实现创建和修改因为太大而不能放入内存的文件</li>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/LargeMappedFiles.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/LargeMappedFiles.java</a></li>
+</ul>
+</li>
+<li><p>NIO 与 IO 的性能比较</p>
+<ul>
+<li>在映射文件访问中NIO性能更加显著</li>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/MappedIO.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/MappedIO.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="文件加锁"><a href="#文件加锁" class="headerlink" title="文件加锁"></a>文件加锁</h1><ul>
+<li>JDK1.4引入文件加锁机制</li>
+<li>整个文件上锁<ul>
+<li>上锁后，文件变大，仍全部上锁</li>
+<li>tryLock()<ul>
+<li>非阻塞式</li>
+</ul>
+</li>
+<li>lock()<ul>
+<li>阻塞式</li>
+</ul>
+</li>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/FileLocking.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/FileLocking.java</a></li>
+</ul>
+</li>
+<li>文件部分上锁<ul>
+<li>文件变大，不影响上锁部分大小</li>
+<li>tryLock(long position, long size, boolean shared)</li>
+<li>lock(long position, long size, boolean shared)</li>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/LockingMappedFiles.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/LockingMappedFiles.java</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><ul>
+<li>压缩格式的读写类继承自InputStream / OutputStream, 不是Reader / Writer，因为压缩类库是按照字节方式而不是字符方式处理的</li>
+<li>GZIP简单压缩<ul>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/GZIPcompress.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/GZIPcompress.java</a></li>
+</ul>
+</li>
+<li>Zip进行多文件保存<ul>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ZipCompress.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ZipCompress.java</a></li>
+</ul>
+</li>
+<li>JAR(Java ARchive Java档案文件)文件<ul>
+<li>如果不采用JAR文件, Web浏览器在下载构成一个应用的所有文件时必须重复多次请求Web服务器</li>
+</ul>
+</li>
+</ul>
+<h1 id="对象序列化"><a href="#对象序列化" class="headerlink" title="对象序列化"></a>对象序列化</h1><ul>
+<li>对象序列化不仅保存对象的信息，还可以追踪对象内所包含的所有引用，拥有所有引用的对象网</li>
+<li>从另外某个流创建了ObjectOutputStream, writeObject()就会将对象序列化</li>
+<li>序列化应用<ul>
+<li>寻找类: <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ThawAlien.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/ThawAlien.java</a></li>
+</ul>
+</li>
+<li>序列化的控制<ul>
+<li>情景<ul>
+<li>某些对象不需要序列化</li>
+<li>对象被还原时，某子对象需要重新创建</li>
+</ul>
+</li>
+<li>实现Externalizable接口<ul>
+<li>code : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Blips.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Blips.java</a></li>
+</ul>
+</li>
+<li>translent关键字<ul>
+<li>通过translent逐个字段关闭序列化</li>
+<li>隐藏密码case : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Logon.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/Logon.java</a></li>
+<li>因为Externalizable对象在默认情况下不保存他们的任何字段，所以transient关键字只能和Serializable对象一起使用</li>
+</ul>
+</li>
+<li>Externalizable的替代方案<ul>
+<li><a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/SerialCtl.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/SerialCtl.java</a></li>
+</ul>
+</li>
+<li>持久性<ul>
+<li>通过序列化，可以实现对任何可Serializable对象的深度复制</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -188,7 +364,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出"><span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O流的典型使用方式"><span class="toc-text">I/O流的典型使用方式</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出"><span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O流的典型使用方式"><span class="toc-text">I/O流的典型使用方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标准I-O"><span class="toc-text">标准I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新I-O"><span class="toc-text">新I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件加锁"><span class="toc-text">文件加锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#压缩"><span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象序列化"><span class="toc-text">对象序列化</span></a></li></ol>
 	</div>
 </aside>
       </div>
