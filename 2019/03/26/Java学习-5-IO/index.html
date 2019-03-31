@@ -102,7 +102,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2019-03-26</span>
-            <span class="time">09:23:01</span>
+            <span class="time">23:29:43</span>
           </span>
           
           <!--  Categories  -->
@@ -352,10 +352,25 @@
 </li>
 <li>持久性<ul>
 <li>通过序列化，可以实现对任何可Serializable对象的深度复制</li>
+<li>想序列化static值，需要自己手动实现<ul>
+<li>serializeStaticState() &amp; deserializeStaticState()</li>
+<li>case : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/StoreCADState.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/StoreCADState.java</a> &amp; <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/RecoverCADState.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/RecoverCADState.java</a></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><ul>
+<li>XML开源库 nu.xom.*</li>
+<li>序列化生成XML : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/xml/Person.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/xml/Person.java</a></li>
+</ul>
+<h1 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h1><ul>
+<li>利用合适的系统资源存储信息</li>
+<li>只能存储基本类型和字符串，每个字符串的存储长度不能超过8k</li>
+<li>常用于存储和读取用户的偏好以及程序配置项的设置</li>
+<li>case : <a href="https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/PreferencesDemo.java" target="_blank" rel="noopener">https://github.com/superdino123/ThinkInJavaTest/blob/master/src/io/PreferencesDemo.java</a></li>
 </ul>
 
         </div>
@@ -364,7 +379,7 @@
         <aside id="article-toc" role="navigation" class="fixed">
 	<div id="article-toc-inner">
 		<i style="padding:0 0 0 10px">目录</i>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出"><span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O流的典型使用方式"><span class="toc-text">I/O流的典型使用方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标准I-O"><span class="toc-text">标准I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新I-O"><span class="toc-text">新I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件加锁"><span class="toc-text">文件加锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#压缩"><span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象序列化"><span class="toc-text">对象序列化</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入输出"><span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O流的典型使用方式"><span class="toc-text">I/O流的典型使用方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标准I-O"><span class="toc-text">标准I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#新I-O"><span class="toc-text">新I/O</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件加锁"><span class="toc-text">文件加锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#压缩"><span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对象序列化"><span class="toc-text">对象序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XML"><span class="toc-text">XML</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Preferences"><span class="toc-text">Preferences</span></a></li></ol>
 	</div>
 </aside>
       </div>
